@@ -178,7 +178,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: "表单设计器 --by kcz"
+      default: "表单设计器 --Redesign wangkq"
     },
     showHead: {
       type: Boolean,
@@ -392,7 +392,6 @@ export default {
       }
 
       this.updateTime = newTime;
-
       // 设置selectItem的值
       this.selectItem = record;
 

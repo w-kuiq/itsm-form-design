@@ -27,7 +27,8 @@ export const basicsList = [
         required: false, // 必须填写
         message: "必填项"
       }
-    ]
+    ],
+    unique:false
   },
   {
     type: "textarea", // 表单类型

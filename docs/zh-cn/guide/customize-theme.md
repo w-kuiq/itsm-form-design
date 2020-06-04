@@ -3,7 +3,7 @@
 k-form-design 的样式使用了 Less 作为开发语言，并定义了主色、布局色变量，你可以根据需求进行相应调整
 #### k-form-design样式变量
 ```less
-@primary-color: "#13c2c2"; // 主色
+@primary-color: "#409EFF"; // 主色
 @layout-color: "#ee88aa"; // 布局色
 @title-text-color: "#ffffff"; // 标题文字颜色
 @header-height: 56px; // 头部高度
@@ -33,7 +33,7 @@ module.exports = {
       loader: 'less-loader', // compiles Less to CSS
      options: {
        modifyVars: {
-         "primary-color": "#13c2c2",
+         "primary-color": "#409EFF",
           "layout-color": "#ee88aa"
        },
        javascriptEnabled: true,

@@ -445,6 +445,14 @@
           <KChangeOption v-model="selectItem.rules" type="rules" />
         </a-form-item>
 
+        <a-form-item
+          v-if=" typeof selectItem.unique !== 'undefined'"
+          label="是否唯一"
+        >
+          <kCheckbox v-model="selectItem.unique" label="是" />
+          <!-- <KChangeOption v-model="selectItem.unique" type="unique" /> -->
+        </a-form-item>
+
         <!-- 表格选项 -->
         <a-form-item v-if="selectItem.type === 'table'" label="表格样式CSS">
           <a-input v-model="selectItem.options.customStyle" />
