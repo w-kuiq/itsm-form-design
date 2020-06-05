@@ -102,7 +102,12 @@
             v-model="options.dynamicKey"
             placeholder="动态数据变量名"
           ></a-input>
-
+          <a-input
+            v-show="options.dynamic"
+            v-model="options.dynamicUrl"
+            placeholder="动态数据来源API"
+          ></a-input>
+          <a-col :span="24" v-show="options.dynamic"><a @click="testAPI">点击测试接口</a></a-col>
           <KChangeOption v-show="!options.dynamic" v-model="options.options" />
         </a-form-item>
         <!-- 选项配置及动态数据配置 end -->
@@ -473,6 +478,7 @@
     <div class="close-box" @click="$emit('handleHide')">
       <a-icon type="double-right" />
     </div>
+    <k-json-modal ref="jsonModal" />
   </div>
 </template>
 <script>
@@ -483,6 +489,10 @@
  */
 import KChangeOption from "../../KChangeOption/index.vue";
 import kCheckbox from "../../KCheckbox/index.vue";
+import axios from "axios";
+import { codemirror } from "vue-codemirror-lite";
+import kJsonModal from "./jsonModal";
+
 export default {
   name: "formItemProperties",
   data() {
@@ -507,7 +517,26 @@ export default {
   },
   components: {
     KChangeOption,
-    kCheckbox
+    kCheckbox,
+    kJsonModal
+  },
+  methods: {
+    testAPI() {
+      let url = this.options.dynamicUrl;
+      if (!url) {
+        this.$message.error("请输入数据来源api");
+        return false;
+      }
+      axios
+        .get(url)
+        .then(res => {
+          this.$refs.jsonModal.jsonData = res;
+          this.$refs.jsonModal.visible = true;
+        })
+        .catch(err => {
+          this.$message.error(err);
+        });
+    }
   }
 };
 </script>

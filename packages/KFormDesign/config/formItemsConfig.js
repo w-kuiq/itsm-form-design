@@ -28,7 +28,7 @@ export const basicsList = [
         message: "必填项"
       }
     ],
-    unique:false
+    unique: false
   },
   {
     type: "textarea", // 表单类型
@@ -52,7 +52,8 @@ export const basicsList = [
         required: false,
         message: "必填项"
       }
-    ]
+    ],
+    unique: false
   },
   {
     type: "number", // 表单类型
@@ -92,6 +93,8 @@ export const basicsList = [
       placeholder: "请选择", // 默认提示文字
       dynamicKey: "",
       dynamic: false,
+      dynamicUrl: "", //获取外部数据接口url
+      dynamicType: {},
       options: [
         // 下拉选择项配置
         {

@@ -10,7 +10,11 @@
     :destroyOnClose="true"
     :width="`${previewWidth}px`"
   >
-    <k-form-build :value="jsonData" @submit="handleSubmit" ref="KFormBuild" />
+    <k-form-build 
+      :value="jsonData" 
+      @submit="handleSubmit"
+      :dynamicData="dynamicData"
+     ref="KFormBuild" />
     <jsonModel ref="jsonModel" />
   </a-modal>
 </template>
@@ -26,9 +30,11 @@ export default {
     return {
       visible: false,
       previewWidth: 850,
-      jsonData: {}
+      jsonData: {},
+      dynamicData:{}
     };
   },
+  
   components: {
     jsonModel
   },
@@ -55,7 +61,11 @@ export default {
     },
     handleCancel() {
       this.visible = false;
+    },
+    handleDynamic(){
+      console.log(this.dynamicData)
     }
-  }
+  },
+  
 };
 </script>

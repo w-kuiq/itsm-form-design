@@ -273,7 +273,8 @@ export default {
       },
       selectItem: {
         key: ""
-      }
+      },
+      desc: {}
     };
   },
   components: {
@@ -428,10 +429,67 @@ export default {
     },
     handleSave() {
       // 保存函数
+      // console.log(this.data)
+      this.keyForm(this.data.list);
+      this.data.desc = this.desc;
+      console.log(this.data);
       this.$emit("save", JSON.stringify(this.data));
     },
     handleClose() {
       this.$emit("close");
+    },
+    //保存时返回form表单键值对列表
+    keyForm(datas) {
+      // 遍历datas 发现里面某个属性是array则继续遍历；找到关键字list;
+      // 特殊几个类型：布局的Key不能算进去
+      const exceptType = ["divider", "card", "grid", "table"];
+      this.desc = {}
+      for (let i = 0; i < datas.length; i++) {
+        if (datas[i].list) {
+          //卡片布局的情况下
+          this.keyForm(datas[i].list);
+        } else {
+          for (let j in datas[i]) {
+            if (
+              datas[i][j] instanceof Array &&
+              !Object.keys(datas[i]).includes("rules")
+            ) {
+              let arr = [];
+              datas[i][j].forEach(ele => {
+                //表格布局情况下
+                if (Object.keys(ele).includes("tds")) {
+                  ele.tds.forEach(item => {
+                    if (item.list.length) {
+                      arr.push(item.list[0]);
+                    }
+                  });
+                } else if (ele.list.length) {
+                  //栅格布局的情况下
+                  arr.push(ele.list[0]);
+                }
+              });
+              this.keyForm(arr);
+            }
+          }
+        }
+
+        let item = datas[i];
+        if (!exceptType.includes(item.type)) {
+          this.desc[item.model] = {
+            label: item.label,
+            type: item.type,
+            default: item.options.defaultValue,
+            rules: item.rules ? item.rules[1] : "",
+            required: item.rules ? item.rules[0].required : ""
+          };
+          if (item.options) {
+            this.desc[item.model].dynamic = item.options["dynamic"];
+            this.desc[item.model].dynamicKey = item.options["dynamicKey"];
+            this.desc[item.model].dynamicUrl = item.options["dynamicUrl"];
+          }
+        }
+      }
+      // return this.desc
     }
   }
 };
