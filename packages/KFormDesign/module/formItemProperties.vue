@@ -17,7 +17,7 @@
           v-if="!hideModel && typeof selectItem.model !== 'undefined'"
           label="数据字段"
         >
-          <a-input v-model="selectItem.model" placeholder="请输入" />
+          <a-input v-model="selectItem.model" @change="changeHandleModel($event)" placeholder="请输入" />
         </a-form-item>
         <!-- input type start -->
         <a-form-item v-if="selectItem.type === 'input'" label="输入框type">
@@ -97,10 +97,16 @@
             <a-radio-button :value="true">动态数据</a-radio-button>
           </a-radio-group>
 
-          <a-input
+          <!-- <a-input
             v-show="options.dynamic"
             v-model="options.dynamicKey"
             placeholder="动态数据变量名"
+          ></a-input> -->
+          <a-input
+            v-show="options.dynamic"
+            v-model="options.dynamicParam"
+            placeholder="接口取值参数"
+            @change="changeHandleParam($event)"
           ></a-input>
           <a-input
             v-show="options.dynamic"
@@ -536,6 +542,14 @@ export default {
         .catch(err => {
           this.$message.error(err);
         });
+    },
+    //取值接口参数input的change方法
+    changeHandleParam(e){
+      this.$set(this.options,'dynamicParam',e.target.value)
+    },
+    // 数据字段input的change方法
+    changeHandleModel(e){
+      this.options.dynamicKey = e.target.value||''
     }
   }
 };

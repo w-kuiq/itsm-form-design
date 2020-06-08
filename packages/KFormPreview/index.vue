@@ -24,6 +24,8 @@
  * date 2019-11-20
  */
 import jsonModel from "../KFormDesign/module/jsonModal";
+import axios from "axios";
+
 export default {
   name: "KFormPreview",
   data() {
@@ -34,7 +36,6 @@ export default {
       dynamicData:{}
     };
   },
-  
   components: {
     jsonModel
   },
@@ -64,7 +65,30 @@ export default {
     },
     handleDynamic(){
       console.log(this.dynamicData)
-    }
+    },
+    dynamicDataInit() {
+      //遍历jsonData的list;找到需要异步加载的字段；
+      let desc = this.jsonData.desc;
+      let KeyArr = Object.keys(desc);
+      let _this = this;
+      KeyArr.forEach(function(item, i) {
+        if (desc[item].hasOwnProperty("dynamicKey")) {
+          _this.getAsyncData(desc[item].dynamicUrl,desc[item].dynamicKey,desc[item].dynamicParam)
+        }
+      });
+    },
+    getAsyncData(url, key,param) {
+      axios
+        .get(url)
+        .then(res => {
+          if(res.status == 200){
+            this.$set(this.dynamicData,key,res.data[param])
+          }
+        })
+        .catch(err => {
+          this.$message.error(err);
+        });
+    },
   },
   
 };

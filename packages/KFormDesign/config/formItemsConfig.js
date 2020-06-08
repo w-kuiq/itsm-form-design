@@ -92,6 +92,7 @@ export const basicsList = [
       hidden: false, // 是否隐藏，false显示，true隐藏
       placeholder: "请选择", // 默认提示文字
       dynamicKey: "",
+      dynamicParam:"",
       dynamic: false,
       dynamicUrl: "", //获取外部数据接口url
       dynamicType: {},

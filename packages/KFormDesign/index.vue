@@ -354,6 +354,8 @@ export default {
     },
     handleOpenJsonModal() {
       // 打开json预览模态框
+      this.keyForm(this.data.list)
+      this.data.desc = this.desc
       this.$refs.jsonModal.jsonData = this.data;
       this.$refs.jsonModal.visible = true;
     },
@@ -370,7 +372,10 @@ export default {
     },
     handlePreview() {
       // 打开预览模态框
+      this.keyForm(this.data.list)
+      this.data.desc = this.desc
       this.$refs.previewModal.jsonData = this.data;
+      this.$refs.previewModal.dynamicDataInit();
       this.$refs.previewModal.previewWidth = this.previewOptions.width;
       this.$refs.previewModal.visible = true;
     },
@@ -429,10 +434,8 @@ export default {
     },
     handleSave() {
       // 保存函数
-      // console.log(this.data)
       this.keyForm(this.data.list);
       this.data.desc = this.desc;
-      console.log(this.data);
       this.$emit("save", JSON.stringify(this.data));
     },
     handleClose() {
@@ -460,12 +463,12 @@ export default {
                 if (Object.keys(ele).includes("tds")) {
                   ele.tds.forEach(item => {
                     if (item.list.length) {
-                      arr.push(item.list[0]);
+                      item.list.forEach(ele=>arr.push)
                     }
                   });
                 } else if (ele.list.length) {
                   //栅格布局的情况下
-                  arr.push(ele.list[0]);
+                  ele.list.forEach(item=>arr.push(item))
                 }
               });
               this.keyForm(arr);
@@ -486,6 +489,8 @@ export default {
             this.desc[item.model].dynamic = item.options["dynamic"];
             this.desc[item.model].dynamicKey = item.options["dynamicKey"];
             this.desc[item.model].dynamicUrl = item.options["dynamicUrl"];
+            this.desc[item.model].dynamicParam = item.options["dynamicParam"];
+
           }
         }
       }
