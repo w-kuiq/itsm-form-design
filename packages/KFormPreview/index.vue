@@ -40,6 +40,9 @@ export default {
   components: {
     jsonModel
   },
+  created() {
+    this.$refs.KFormBuild.getDynamicData();
+  },
   methods: {
     handleSubmit(p) {
       p.then(res => {
@@ -68,33 +71,39 @@ export default {
       console.log(this.dynamicData)
     },
     dynamicDataInit() {
-      //遍历jsonData的list;找到需要异步加载的字段；
-      let desc = this.jsonData.desc;
-      let KeyArr = Object.keys(desc);
-      let _this = this;
-      KeyArr.forEach(function(item) {
-        // eslint-disable-next-line no-prototype-builtins
-        if (desc[item].hasOwnProperty("dynamicKey")) {
-          _this.getAsyncData(
-            desc[item].dynamicUrl,
-            desc[item].dynamicKey,
-            desc[item].dynamicParam
-          );
-        }
+      this.$nextTick(function() {
+        this.$refs.KFormBuild.getDynamicData();
       });
-    },
-    getAsyncData(url, key, param) {
-      axios
-        .get(url)
-        .then(res => {
-          if (res.status == 200) {
-            this.$set(this.dynamicData, key, res.data[param]);
-          }
-        })
-        .catch(err => {
-          this.$message.error(err);
-        });
     }
+    // dynamicDataInit() {
+    //   // this.$refs.KFormBuild.getDynamicData();
+    //   //遍历jsonData的list;找到需要异步加载的字段；
+    //   let desc = this.jsonData.desc;
+    //   let KeyArr = Object.keys(desc);
+    //   let _this = this;
+    //   KeyArr.forEach(function(item) {
+    //     // eslint-disable-next-line no-prototype-builtins
+    //     if (desc[item].hasOwnProperty("dynamicKey")) {
+    //       _this.getAsyncData(
+    //         desc[item].dynamicUrl,
+    //         desc[item].dynamicKey,
+    //         desc[item].dynamicParam
+    //       );
+    //     }
+    //   });
+    // },
+    // getAsyncData(url, key, param) {
+    //   axios
+    //     .get(url)
+    //     .then(res => {
+    //       if (res.status == 200) {
+    //         this.$set(this.dynamicData, key, res.data[param]);
+    //       }
+    //     })
+    //     .catch(err => {
+    //       this.$message.error(err);
+    //     });
+    // }
   }
 };
 </script>

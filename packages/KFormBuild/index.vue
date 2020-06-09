@@ -33,6 +33,8 @@
  */
 import buildBlocks from "./buildBlocks";
 import zhCN from "ant-design-vue/lib/locale-provider/zh_CN";
+import axios from "axios";
+
 // import moment from "moment";
 export default {
   name: "KFormBuild",
@@ -142,6 +144,34 @@ export default {
           reject(err);
         }
       });
+    },
+    // 获取dynamicData
+    getDynamicData() {
+      let desc = this.value.desc;
+      let KeyArr = Object.keys(desc);
+      let _this = this;
+      KeyArr.forEach(function(item) {
+        // eslint-disable-next-line no-prototype-builtins
+        if (desc[item].hasOwnProperty("dynamicKey")) {
+          _this.getAsyncData(
+            desc[item].dynamicUrl,
+            desc[item].dynamicKey,
+            desc[item].dynamicParam
+          );
+        }
+      });
+    },
+    getAsyncData(url, key, param) {
+      axios
+        .get(url)
+        .then(res => {
+          if (res.status == 200) {
+            this.$set(this.dynamicData, key, res.data[param]);
+          }
+        })
+        .catch(err => {
+          this.$message.error(err);
+        });
     },
 
     // 批量设置某个option的值

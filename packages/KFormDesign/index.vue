@@ -375,9 +375,9 @@ export default {
       this.keyForm(this.data.list)
       this.data.desc = this.desc;
       this.$refs.previewModal.jsonData = this.data;
-      this.$refs.previewModal.dynamicDataInit();
       this.$refs.previewModal.previewWidth = this.previewOptions.width;
       this.$refs.previewModal.visible = true;
+      this.$refs.previewModal.dynamicDataInit();
     },
     handleReset() {
       // 清空
