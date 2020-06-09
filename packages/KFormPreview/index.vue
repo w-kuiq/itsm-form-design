@@ -11,10 +11,11 @@
     :width="`${previewWidth}px`"
   >
     <k-form-build 
-      :value="jsonData" 
+      :value="jsonData"
       @submit="handleSubmit"
       :dynamicData="dynamicData"
-     ref="KFormBuild" />
+      ref="KFormBuild"
+    />
     <jsonModel ref="jsonModel" />
   </a-modal>
 </template>
@@ -63,7 +64,7 @@ export default {
     handleCancel() {
       this.visible = false;
     },
-    handleDynamic(){
+    handleDynamic() {
       console.log(this.dynamicData)
     },
     dynamicDataInit() {
@@ -71,25 +72,29 @@ export default {
       let desc = this.jsonData.desc;
       let KeyArr = Object.keys(desc);
       let _this = this;
-      KeyArr.forEach(function(item, i) {
+      KeyArr.forEach(function(item) {
+        // eslint-disable-next-line no-prototype-builtins
         if (desc[item].hasOwnProperty("dynamicKey")) {
-          _this.getAsyncData(desc[item].dynamicUrl,desc[item].dynamicKey,desc[item].dynamicParam)
+          _this.getAsyncData(
+            desc[item].dynamicUrl,
+            desc[item].dynamicKey,
+            desc[item].dynamicParam
+          );
         }
       });
     },
-    getAsyncData(url, key,param) {
+    getAsyncData(url, key, param) {
       axios
         .get(url)
         .then(res => {
-          if(res.status == 200){
-            this.$set(this.dynamicData,key,res.data[param])
+          if (res.status == 200) {
+            this.$set(this.dynamicData, key, res.data[param]);
           }
         })
         .catch(err => {
           this.$message.error(err);
         });
-    },
-  },
-  
+    }
+  }
 };
 </script>

@@ -544,12 +544,13 @@ export default {
         });
     },
     //取值接口参数input的change方法
-    changeHandleParam(e){
-      this.$set(this.options,'dynamicParam',e.target.value)
+    changeHandleParam(e) {
+      this.$set(this.options, "dynamicParam", e.target.value);
+      this.options.dynamicKey = this.selectItem.model;
     },
     // 数据字段input的change方法
-    changeHandleModel(e){
-      this.options.dynamicKey = e.target.value||''
+    changeHandleModel(e) {
+      this.options.dynamicKey = e.target.value || "";
     }
   }
 };

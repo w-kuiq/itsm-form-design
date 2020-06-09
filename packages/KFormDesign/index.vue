@@ -373,7 +373,7 @@ export default {
     handlePreview() {
       // 打开预览模态框
       this.keyForm(this.data.list)
-      this.data.desc = this.desc
+      this.data.desc = this.desc;
       this.$refs.previewModal.jsonData = this.data;
       this.$refs.previewModal.dynamicDataInit();
       this.$refs.previewModal.previewWidth = this.previewOptions.width;
