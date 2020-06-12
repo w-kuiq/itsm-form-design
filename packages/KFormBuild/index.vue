@@ -160,6 +160,8 @@ export default {
           );
         }
       });
+      console.log(this.dynamicData)
+      return this.dynamicData;
     },
     getAsyncData(url, key, param) {
       axios
@@ -232,6 +234,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.setData(this.defaultValue);
+      this.getDynamicData()
     });
   }
 };
