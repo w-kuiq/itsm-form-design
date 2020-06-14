@@ -40,9 +40,6 @@ export default {
   components: {
     jsonModel
   },
-  created() {
-    this.$refs.KFormBuild.getDynamicData();
-  },
   methods: {
     handleSubmit(p) {
       p.then(res => {
