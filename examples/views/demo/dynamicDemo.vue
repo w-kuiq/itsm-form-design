@@ -1,7 +1,7 @@
 <!--
  * @Author: wangkq
  * @Date: 2020-06-13 11:48:37
- * @LastEditTime: 2020-06-14 13:04:52
+ * @LastEditTime: 2020-06-19 15:38:02
  * @LastEditors: wangkq
  * @Description: 
  * @FilePath: /itsm-form-design/examples/views/demo/dynamicDemo.vue
@@ -91,6 +91,12 @@ export default {
     //异步请求数据渲染
     this.dynamicDataInit();
   },
-  methods: {}
+  methods: {
+    dynamicDataInit(){
+      this.$nextTick(function(){
+        this.$refs.KFB.getDynamicData();
+      })
+    }
+  }
 };
 </script>

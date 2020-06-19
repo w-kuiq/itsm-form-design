@@ -332,11 +332,13 @@ export default {
       if (!this.selectItem.key) {
         // 在没有选择表单时，将数据push到this.data.list
         const key = item.type + "_" + new Date().getTime();
-        item = {
-          ...item,
-          key,
-          model: key
-        };
+        if(!item.model){
+          item = {
+            ...item,
+            key,
+            model: key
+          };
+        }
         if (this.noModel.includes(item.type)) {
           // 删除不需要的model属性
           delete item.model;
@@ -349,6 +351,8 @@ export default {
         this.data.list.push(record);
         this.handleSetSelectItem(record);
         return false;
+      }else{
+        console.log('inininin')
       }
       this.$refs.KFCP.handleCopy(false, item);
     },
