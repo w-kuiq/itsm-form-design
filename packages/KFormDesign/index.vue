@@ -329,16 +329,9 @@ export default {
     handleListPush(item) {
       // 双击控件按钮push到list
       // 生成key值
-      if (!this.selectItem.key) {
-        // 在没有选择表单时，将数据push到this.data.list
-        const key = item.type + "_" + new Date().getTime();
-        if(!item.model){
-          item = {
-            ...item,
-            key,
-            model: key
-          };
-        }
+
+      //如果初始值给设定了model，则key 不需要生成
+      if(item.model){
         if (this.noModel.includes(item.type)) {
           // 删除不需要的model属性
           delete item.model;
@@ -352,8 +345,30 @@ export default {
         this.handleSetSelectItem(record);
         return false;
       }else{
-        console.log('inininin')
+          if (!this.selectItem.key) {
+          // 在没有选择表单时，将数据push到this.data.list
+          const key = item.type + "_" + new Date().getTime();
+          item = {
+            ...item,
+            key,
+            model: key
+          };
+          if (this.noModel.includes(item.type)) {
+            // 删除不需要的model属性
+            delete item.model;
+          }
+          const itemString = JSON.stringify(item);
+          const record = JSON.parse(itemString);
+          // 删除icon及compoent属性
+          delete record.icon;
+          delete record.component;
+          this.data.list.push(record);
+          this.handleSetSelectItem(record);
+          return false;
+        }
       }
+     
+
       this.$refs.KFCP.handleCopy(false, item);
     },
     handleOpenJsonModal() {
