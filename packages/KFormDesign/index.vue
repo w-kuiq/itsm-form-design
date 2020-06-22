@@ -315,12 +315,15 @@ export default {
   methods: {
     generateKey(list, index) {
       // 生成key值
-      const key = list[index].type + "_" + new Date().getTime();
-      this.$set(list, index, {
-        ...list[index],
-        key,
-        model: key
-      });
+      if(!list[index].key){
+        const key = list[index].type + "_" + new Date().getTime();
+        this.$set(list, index, {
+          ...list[index],
+          key,
+          model: key
+        });
+      }
+      
       if (this.noModel.includes(list[index].type)) {
         // 删除不需要的model属性
         delete list[index].model;
@@ -329,7 +332,6 @@ export default {
     handleListPush(item) {
       // 双击控件按钮push到list
       // 生成key值
-
       //如果初始值给设定了model，则key 不需要生成
       if(item.model){
         if (this.noModel.includes(item.type)) {

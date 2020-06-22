@@ -503,14 +503,23 @@ export default {
   name: "formItemProperties",
   data() {
     return {
-      options: {}
+      options: {},
     };
+  },
+  computed:{
+    timeFormat(){
+      return this.options.showTime
+    }
   },
   watch: {
     selectItem(val) {
       this.options = val.options || {};
+    },
+    timeFormat(val){
+      this.options.format = val?'YYYY-MM-DD HH:mm:ss':this.options.format
     }
   },
+ 
   props: {
     selectItem: {
       type: Object,
