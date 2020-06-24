@@ -468,6 +468,7 @@ export default {
       // 特殊几个类型：布局的Key不能算进去
       const exceptType = ["divider", "card", "grid", "table"];
       this.desc = {}
+      let arr = [];
       for (let i = 0; i < datas.length; i++) {
         if (datas[i].list) {
           //卡片布局的情况下
@@ -478,7 +479,7 @@ export default {
               datas[i][j] instanceof Array &&
               !Object.keys(datas[i]).includes("rules")
             ) {
-              let arr = [];
+              
               datas[i][j].forEach(ele => {
                 //表格布局情况下
                 if (Object.keys(ele).includes("tds")) {
