@@ -512,6 +512,7 @@ export default {
             this.desc[item.model].dynamicKey = item.options["dynamicKey"];
             this.desc[item.model].dynamicUrl = item.options["dynamicUrl"];
             this.desc[item.model].dynamicParam = item.options["dynamicParam"];
+            this.desc[item.model].disabled = item.options["disabled"];
 
           }
         }
