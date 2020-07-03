@@ -2,8 +2,8 @@
  * @Description: 传入record数据，通过判断record.type，来渲染对应的组件
  * @Author: kcz
  * @Date: 2020-01-02 22:41:48
- * @LastEditors: kcz
- * @LastEditTime: 2020-05-21 20:14:39
+ * @LastEditors: wangkq
+ * @LastEditTime: 2020-07-03 16:40:57
  -->
 <template>
   <a-form-item
@@ -198,6 +198,7 @@
       v-else-if="record.type === 'select'"
       :placeholder="record.options.placeholder"
       :showSearch="record.options.showSearch"
+      :optionFilterProp="'children'"
       :options="
         !record.options.dynamic
           ? record.options.options
