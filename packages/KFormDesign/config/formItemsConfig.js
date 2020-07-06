@@ -446,7 +446,6 @@ export const basicsList = [
     type: "editor",
     label: "富文本",
     icon: "icon-LC_icon_edit_line_1",
-    list: [],
     options: {
       height: 300,
       placeholder: "请输入",

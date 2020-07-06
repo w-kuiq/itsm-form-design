@@ -458,6 +458,7 @@ export default {
       this.keyForm(this.data.list);
       this.data.desc = this.desc;
       this.$emit("save", JSON.stringify(this.data));
+      console.log(this.data)
     },
     handleClose() {
       this.$emit("close");
