@@ -346,6 +346,8 @@ export const basicsList = [
       clearable: false, // 是否显示清除按钮
       showSearch: false, // 是否显示搜索框，搜索选择的项的值，而不是文字
       treeCheckable: false,
+      treeSingleCheck:false, //只能勾选子节点
+      treeSingleCheckable:false, 
       placeholder: "请选择",
       dynamicKey: "",
       dynamic: true,

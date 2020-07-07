@@ -148,32 +148,51 @@ export default {
     // 获取dynamicData
     getDynamicData() {
       let desc = this.value.desc;
+      let list = this.value.list;
       let KeyArr = Object.keys(desc);
       let _this = this;
       KeyArr.forEach(function(item) {
-        // eslint-disable-next-line no-prototype-builtins
+        let listOption
         if (desc[item].hasOwnProperty("dynamicKey")) {
+          if(desc[item].type == 'treeSelect'){
+            for(let i of list){
+              if(i.key == item){
+                listOption = i.options
+              }
+            }
+          }
           _this.getAsyncData(
             desc[item].dynamicUrl,
             desc[item].dynamicKey,
-            desc[item].dynamicParam
+            desc[item].dynamicParam,
+            listOption  //该控件的所有参数
           );
         }
       });
-      console.log(this.dynamicData)
       return this.dynamicData;
     },
-    getAsyncData(url, key, param) {
+    getAsyncData(url, key, param, listOption) {
       axios
         .get(url)
         .then(res => {
           if (res.status == 200) {
+            if(listOption.treeSingleCheckable){ //如果树形控件勾选了只能勾选子节点
+              this.recursionAddParams(res.data[param])
+            }
             this.$set(this.dynamicData, key, res.data[param]);
           }
         })
         .catch(err => {
           this.$message.error(err);
         });
+    },
+    recursionAddParams(datas){
+      datas.forEach((item,i)=>{
+        if(item.children&&item.children.length>0){
+          item.disabled = true
+          this.recursionAddParams(item.children)
+        }
+      })
     },
 
     // 批量设置某个option的值

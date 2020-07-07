@@ -439,6 +439,11 @@
             v-model="options.treeCheckable"
             label="可勾选"
           />
+          <kCheckbox
+            v-if="typeof options.treeSingleCheck !== 'undefined'"
+            v-model="options.treeSingleCheckable"
+            label="只能勾选子节点"
+          />
         </a-form-item>
 
         <a-form-item
