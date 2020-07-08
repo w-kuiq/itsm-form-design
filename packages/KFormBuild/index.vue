@@ -165,7 +165,7 @@ export default {
             desc[item].dynamicUrl,
             desc[item].dynamicKey,
             desc[item].dynamicParam,
-            listOption  //该控件的所有参数
+            listOption||{}  //该控件的所有参数
           );
         }
       });
