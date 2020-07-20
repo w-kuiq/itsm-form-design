@@ -5,10 +5,10 @@ import router from "./router/";
 import {
   KFormDesign,
   KFormBuild,
-  // setFormDesignConfig
+  setFormDesignConfig
 } from "../packages/index";
-// import Cmp from "./components/CustomComponent/index.vue";
-
+import Cmp from "./components/CustomComponent/index.vue";
+import selectSearch from "./components/CustomComponent/selectSearch.vue";
 // setFormDesignConfig({
 //   title: "测试自定义字段",
 //   list: [
@@ -51,7 +51,47 @@ import {
 //           message: "必填项"
 //         }
 //       ]
-//     }
+//     },
+//     {
+//       type: "selectSearch", // 表单类型
+//       label: "指派人员", // 标题文字
+//       icon: "icon-gallery",
+//       component: selectSearch,
+//       options: {
+//         width: "100%", // 宽度
+//         defaultValue: undefined, // 下拉选框请使用undefined为默认值
+//         multiple: false, // 是否允许多选
+//         disabled: false, // 是否禁用
+//         clearable: false, // 是否显示清除按钮
+//         hidden: false, // 是否隐藏，false显示，true隐藏
+//         placeholder: "请选择", // 默认提示文字
+//         dynamicKey: "__NEXT_USER__",
+//         dynamicParam:"data",
+//         dynamic: true,
+//         dynamicUrl: "http://10.199.134.132/itsm/api/v1/itsm/dynamic_data/user_list/?search=", //获取外部数据接口url
+//         dynamicType: {},
+//         options: [
+//           // 下拉选择项配置
+//           {
+//             value: "1",
+//             label: "下拉框1"
+//           },
+//           {
+//             value: "2",
+//             label: "下拉框33"
+//           }
+//         ],
+//         showSearch: true // 是否显示搜索框，搜索选择的项的值，而不是文字
+//       },
+//       model: "__NEXT_USER__",
+//       key: "__NEXT_USER__",
+//       rules: [
+//         {
+//           required: false,
+//           message: "必填项"
+//         }
+//       ]
+//     },
 //   ],
 //   uploadFile: "",
 //   uploadImage: "",

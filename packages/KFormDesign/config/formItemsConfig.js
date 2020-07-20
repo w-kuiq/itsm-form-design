@@ -28,7 +28,8 @@ export const basicsList = [
         message: "必填项"
       }
     ],
-    unique: false
+    unique: false,
+    is_inherited: false
   },
   {
     type: "textarea", // 表单类型
@@ -53,7 +54,8 @@ export const basicsList = [
         message: "必填项"
       }
     ],
-    unique: false
+    unique: false,
+    is_inherited: false
   },
   {
     type: "number", // 表单类型
@@ -77,7 +79,9 @@ export const basicsList = [
         required: false,
         message: "必填项"
       }
-    ]
+    ],
+    unique: false,
+    is_inherited: false
   },
   {
     type: "select", // 表单类型
@@ -116,7 +120,9 @@ export const basicsList = [
         required: false,
         message: "必填项"
       }
-    ]
+    ],
+    unique: false,
+    is_inherited: false
   },
   {
     type: "checkbox",
@@ -150,7 +156,9 @@ export const basicsList = [
         required: false,
         message: "必填项"
       }
-    ]
+    ],
+    unique: false,
+    is_inherited: false
   },
   {
     type: "radio", // 表单类型
@@ -184,7 +192,9 @@ export const basicsList = [
         required: false,
         message: "必填项"
       }
-    ]
+    ],
+    unique: false,
+    is_inherited: false
   },
   {
     type: "date", // 表单类型
@@ -210,7 +220,9 @@ export const basicsList = [
         required: false,
         message: "必填项"
       }
-    ]
+    ],
+    unique: false,
+    is_inherited: false
   },
   {
     type: "time", // 表单类型
@@ -232,7 +244,9 @@ export const basicsList = [
         required: false,
         message: "必填项"
       }
-    ]
+    ],
+    unique: false,
+    is_inherited: false
   },
   {
     type: "rate", // 表单类型
@@ -305,7 +319,9 @@ export const basicsList = [
         required: false,
         message: "必填项"
       }
-    ]
+    ],
+    unique: false,
+    is_inherited: false
   },
   {
     type: "uploadImg",
@@ -332,7 +348,9 @@ export const basicsList = [
         required: false,
         message: "必填项"
       }
-    ]
+    ],
+    unique: false,
+    is_inherited: false
   },
   {
     type: "treeSelect", // 表单类型
@@ -381,7 +399,9 @@ export const basicsList = [
         required: false,
         message: "必填项"
       }
-    ]
+    ],
+    unique: false,
+    is_inherited: false
   },
   {
     type: "cascader", // 表单类型
@@ -426,7 +446,9 @@ export const basicsList = [
         required: false,
         message: "必填项"
       }
-    ]
+    ],
+    unique: false,
+    is_inherited: false
   },
   {
     type: "batch",

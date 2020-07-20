@@ -1,7 +1,7 @@
 <!--
  * @Author: wangkq
  * @Date: 2020-06-13 11:48:37
- * @LastEditTime: 2020-06-19 15:38:02
+ * @LastEditTime: 2020-07-20 16:30:00
  * @LastEditors: wangkq
  * @Description: 
  * @FilePath: /itsm-form-design/examples/views/demo/dynamicDemo.vue
@@ -9,7 +9,7 @@
 --> 
 <template>
   <div>
-    <k-form-build :value="jsonData" ref="KFB" />
+    <k-form-build :value="jsonData" :disabled="true" ref="KFB" />
   </div>
 </template>
 <script>

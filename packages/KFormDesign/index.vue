@@ -375,6 +375,7 @@ export default {
     },
     handleOpenJsonModal() {
       // 打开json预览模态框
+      this.desc = {}
       this.keyForm(this.data.list)
       this.data.desc = this.desc
       this.$refs.jsonModal.jsonData = this.data;
@@ -404,6 +405,7 @@ export default {
       // 清空
       try {
         this.data.list = [];
+        this.desc = {}
         this.handleSetSelectItem({ key: "" });
         this.$message.success("已清空");
         return true;
@@ -455,6 +457,7 @@ export default {
     },
     handleSave() {
       // 保存函数
+      this.desc = {}
       this.keyForm(this.data.list);
       this.data.desc = this.desc;
       this.$emit("save", JSON.stringify(this.data));
@@ -468,7 +471,7 @@ export default {
       // 遍历datas 发现里面某个属性是array则继续遍历；找到关键字list;
       // 特殊几个类型：布局的Key不能算进去
       const exceptType = ["divider", "card", "grid", "table"];
-      this.desc = {}
+
       let arr = [];
       for (let i = 0; i < datas.length; i++) {
         if (datas[i].list) {
@@ -480,16 +483,15 @@ export default {
               datas[i][j] instanceof Array &&
               !Object.keys(datas[i]).includes("rules")
             ) {
-              
               datas[i][j].forEach(ele => {
                 //表格布局情况下
                 if (Object.keys(ele).includes("tds")) {
                   ele.tds.forEach(item => {
-                    if (item.list.length) {
-                      item.list.forEach(ele=>arr.push)
+                    if (item.list.length>0) {
+                      item.list.forEach(ele=>arr.push(ele))
                     }
                   });
-                } else if (ele.list.length) {
+                } else if (ele.list.length>0) {
                   //栅格布局的情况下
                   ele.list.forEach(item=>arr.push(item))
                 }
@@ -506,7 +508,9 @@ export default {
             type: item.type,
             default: item.options.defaultValue,
             rules: item.rules ? item.rules[1] : "",
-            required: item.rules ? item.rules[0].required : ""
+            required: item.rules ? item.rules[0].required : "",
+            unique: item.unique,
+            is_inherited: item.is_inherited ,
           };
           if (item.options) {
             this.desc[item.model].dynamic = item.options["dynamic"];
@@ -514,7 +518,6 @@ export default {
             this.desc[item.model].dynamicUrl = item.options["dynamicUrl"];
             this.desc[item.model].dynamicParam = item.options["dynamicParam"];
             this.desc[item.model].disabled = item.options["disabled"];
-
           }
         }
       }

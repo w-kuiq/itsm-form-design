@@ -466,7 +466,12 @@
           label="是否唯一"
         >
           <kCheckbox v-model="selectItem.unique" label="是" />
-          <!-- <KChangeOption v-model="selectItem.unique" type="unique" /> -->
+        </a-form-item>
+        <a-form-item
+          v-if=" typeof selectItem.is_inherited !== 'undefined'"
+          label="是否继承"
+        >
+          <kCheckbox v-model="selectItem.is_inherited" label="是" />
         </a-form-item>
 
         <!-- 表格选项 -->
