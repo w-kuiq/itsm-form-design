@@ -444,6 +444,11 @@
             v-model="options.treeSingleCheckable"
             label="只能勾选子节点"
           />
+           <kCheckbox
+            v-if="true"
+            v-model="options.combineHandle"
+            label="联动操作"
+          />
         </a-form-item>
 
         <a-form-item
@@ -472,6 +477,16 @@
           label="是否继承"
         >
           <kCheckbox v-model="selectItem.is_inherited" label="是" />
+        </a-form-item>
+        <a-form-item
+          v-if=" typeof selectItem.combine !== 'undefined'"
+          label="是否联动"
+        >
+          <kCheckbox v-model="selectItem.is_combine" label="是" />
+          <a-input
+            v-model="selectItem.combine_item"
+            placeholder="联动组件数据字段"
+          />
         </a-form-item>
 
         <!-- 表格选项 -->

@@ -29,7 +29,10 @@ export const basicsList = [
       }
     ],
     unique: false,
-    is_inherited: false
+    is_inherited: false,
+    combine:true,
+    is_combine:false,
+    combine_item:''
   },
   {
     type: "textarea", // 表单类型
@@ -55,7 +58,10 @@ export const basicsList = [
       }
     ],
     unique: false,
-    is_inherited: false
+    is_inherited: false,
+    combine:true,
+    is_combine:false,
+    combine_item:''
   },
   {
     type: "number", // 表单类型
@@ -170,6 +176,7 @@ export const basicsList = [
       defaultValue: "", // 默认值
       dynamicKey: "",
       dynamic: false,
+      combineHandle:false,
       options: [
         {
           value: "1",

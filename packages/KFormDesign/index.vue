@@ -511,6 +511,7 @@ export default {
             required: item.rules ? item.rules[0].required : "",
             unique: item.unique,
             is_inherited: item.is_inherited ,
+            combineHandle:item.options.combineHandle
           };
           if (item.options) {
             this.desc[item.model].dynamic = item.options["dynamic"];

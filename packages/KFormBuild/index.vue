@@ -246,8 +246,20 @@ export default {
       this.setOptions(fields, "disabled", false);
     },
     handleChange(value, key) {
-      // 触发change事件
       this.$emit("change", value, key);
+      this.combineChange(value,key)
+    },
+    combineChange(value,key){
+      let kv = key+'=='+value
+      if(this.value.desc.hasOwnProperty(key)&&this.value.desc[key].combineHandle){ //如果点击的这个组件是可联动操作的
+        this.value.list.forEach(item=>{
+          if(item.hasOwnProperty('combine_item')&&item['combine_item']==kv){
+            item.options.hidden = false
+          }else if(item.is_combine){
+            item.options.hidden = true
+          }
+        })
+      }
     }
   },
   mounted() {
