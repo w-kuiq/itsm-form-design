@@ -511,14 +511,17 @@ export default {
             required: item.rules ? item.rules[0].required : "",
             unique: item.unique,
             is_inherited: item.is_inherited ,
-            combineHandle:item.options.combineHandle
+            combineHandle:item.options.combineHandle,
+            source:item.source?item.source:1
           };
-          if (item.options) {
+          
+          if (item.options.options) {
             this.desc[item.model].dynamic = item.options["dynamic"];
             this.desc[item.model].dynamicKey = item.options["dynamicKey"];
             this.desc[item.model].dynamicUrl = item.options["dynamicUrl"];
             this.desc[item.model].dynamicParam = item.options["dynamicParam"];
             this.desc[item.model].disabled = item.options["disabled"];
+            this.desc[item.model].options = item.options["options"]
           }
         }
       }

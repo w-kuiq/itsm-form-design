@@ -1,7 +1,7 @@
 <!--
  * @Author: wangkq
  * @Date: 2020-07-20 16:32:18
- * @LastEditTime: 2020-07-20 16:32:20
+ * @LastEditTime: 2020-07-22 18:19:49
  * @LastEditors: wangkq
  * @Description: 
 --> 
@@ -22,6 +22,7 @@
       :show-arrow="false"
       :filter-option="false"
       :not-found-content="null"
+      :disabled='disabled'
       @search="handleSearch"
       @change="handleChange"
     >
@@ -40,7 +41,7 @@ export default {
       data:[]
     }
   },
-  props: ['record', 'value'],
+  props: ['record', 'value','disabled','dynamicData'],
   // props: {
   //   record: {
   //     type: Object,

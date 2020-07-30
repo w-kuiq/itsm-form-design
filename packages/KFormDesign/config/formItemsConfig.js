@@ -30,9 +30,8 @@ export const basicsList = [
     ],
     unique: false,
     is_inherited: false,
-    combine:true,
-    is_combine:false,
-    combine_item:''
+    is_combine:false,//可被联动操作
+    combine_item:'' //联动操作对应字段
   },
   {
     type: "textarea", // 表单类型
@@ -59,9 +58,8 @@ export const basicsList = [
     ],
     unique: false,
     is_inherited: false,
-    combine:true,
-    is_combine:false,
-    combine_item:''
+    is_combine:false,//可被联动操作
+    combine_item:'' //联动操作对应字段
   },
   {
     type: "number", // 表单类型
@@ -87,7 +85,9 @@ export const basicsList = [
       }
     ],
     unique: false,
-    is_inherited: false
+    is_inherited: false,
+    is_combine:false,//可被联动操作
+    combine_item:'' //联动操作对应字段
   },
   {
     type: "select", // 表单类型
@@ -106,6 +106,7 @@ export const basicsList = [
       dynamic: false,
       dynamicUrl: "", //获取外部数据接口url
       dynamicType: {},
+      combineHandle:false, //可联动操作
       options: [
         // 下拉选择项配置
         {
@@ -128,7 +129,9 @@ export const basicsList = [
       }
     ],
     unique: false,
-    is_inherited: false
+    is_inherited: false,
+    is_combine:false,//可被联动操作
+    combine_item:'' //联动操作对应字段
   },
   {
     type: "checkbox",
@@ -140,6 +143,7 @@ export const basicsList = [
       defaultValue: [],
       dynamicKey: "",
       dynamic: false,
+      combineHandle:false,//可联动操作
       options: [
         {
           value: "1",
@@ -176,7 +180,7 @@ export const basicsList = [
       defaultValue: "", // 默认值
       dynamicKey: "",
       dynamic: false,
-      combineHandle:false,
+      combineHandle:false,//可联动操作
       options: [
         {
           value: "1",
@@ -201,7 +205,9 @@ export const basicsList = [
       }
     ],
     unique: false,
-    is_inherited: false
+    is_inherited: false,
+    is_combine:false,//可被联动操作
+    combine_item:'' //联动操作对应字段
   },
   {
     type: "date", // 表单类型
@@ -229,7 +235,9 @@ export const basicsList = [
       }
     ],
     unique: false,
-    is_inherited: false
+    is_inherited: false,
+    is_combine:false,//可被联动操作
+    combine_item:'' //联动操作对应字段
   },
   {
     type: "time", // 表单类型
@@ -253,7 +261,9 @@ export const basicsList = [
       }
     ],
     unique: false,
-    is_inherited: false
+    is_inherited: false,
+    is_combine:false,//可被联动操作
+    combine_item:'' //联动操作对应字段
   },
   {
     type: "rate", // 表单类型
@@ -273,7 +283,11 @@ export const basicsList = [
         required: false,
         message: "必填项"
       }
-    ]
+    ],
+    unique: false,
+    is_inherited: false,
+    is_combine:false,//可被联动操作
+    combine_item:'' //联动操作对应字段
   },
   {
     type: "slider", // 表单类型
@@ -328,7 +342,9 @@ export const basicsList = [
       }
     ],
     unique: false,
-    is_inherited: false
+    is_inherited: false,
+    is_combine:false,//可被联动操作
+    combine_item:'' //联动操作对应字段
   },
   {
     type: "uploadImg",
@@ -357,7 +373,9 @@ export const basicsList = [
       }
     ],
     unique: false,
-    is_inherited: false
+    is_inherited: false,
+    is_combine:false,//可被联动操作
+    combine_item:'' //联动操作对应字段
   },
   {
     type: "treeSelect", // 表单类型
@@ -408,7 +426,9 @@ export const basicsList = [
       }
     ],
     unique: false,
-    is_inherited: false
+    is_inherited: false,
+    is_combine:false,//可被联动操作
+    combine_item:'' //联动操作对应字段
   },
   {
     type: "cascader", // 表单类型
@@ -455,7 +475,9 @@ export const basicsList = [
       }
     ],
     unique: false,
-    is_inherited: false
+    is_inherited: false,
+    is_combine:false,//可被联动操作
+    combine_item:'' //联动操作对应字段
   },
   {
     type: "batch",
@@ -494,7 +516,9 @@ export const basicsList = [
         required: false,
         message: "必填项"
       }
-    ]
+    ],
+    is_combine:false,//可被联动操作
+    combine_item:'' //联动操作对应字段
   },
   {
     type: "switch", // 表单类型
@@ -525,7 +549,9 @@ export const basicsList = [
       hidden: false, // 是否隐藏，false显示，true隐藏
       disabled: false // 是否禁用，false不禁用，true禁用
     },
-    key: ""
+    key: "",
+    is_combine:false,//可被联动操作
+    combine_item:'' //联动操作对应字段
   },
   {
     type: "alert",
@@ -539,7 +565,9 @@ export const basicsList = [
       hidden: false, // 是否隐藏，false显示，true隐藏
       closable: false
     },
-    key: ""
+    key: "",
+    is_combine:false,//可被联动操作
+    combine_item:'' //联动操作对应字段
   },
   {
     type: "text",
@@ -550,7 +578,9 @@ export const basicsList = [
       hidden: false, // 是否隐藏，false显示，true隐藏
       showRequiredMark: false
     },
-    key: ""
+    key: "",
+    is_combine:false,//可被联动操作
+    combine_item:'' //联动操作对应字段
   },
   {
     type: "html",

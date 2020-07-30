@@ -161,12 +161,15 @@ export default {
               }
             }
           }
-          _this.getAsyncData(
-            desc[item].dynamicUrl,
-            desc[item].dynamicKey,
-            desc[item].dynamicParam,
-            listOption||{}  //该控件的所有参数
-          );
+          if(desc[item].dynamicUrl){
+            _this.getAsyncData(
+              desc[item].dynamicUrl,
+              desc[item].dynamicKey,
+              desc[item].dynamicParam,
+              listOption||{}  //该控件的所有参数
+            );
+          }
+          
         }
       });
       return this.dynamicData;
@@ -270,3 +273,14 @@ export default {
   }
 };
 </script>
+<style scoped>
+  form /deep/ .ant-form-item{
+    margin-bottom: 12px;
+    font-size:12px;
+    font-weight: normal;
+  }
+  form /deep/ .ant-form label{
+    font-size:12px
+  }
+</style>
+

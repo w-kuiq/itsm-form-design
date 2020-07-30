@@ -445,7 +445,7 @@
             label="只能勾选子节点"
           />
            <kCheckbox
-            v-if="true"
+            v-if="typeof options.combineHandle !== 'undefined'"
             v-model="options.combineHandle"
             label="联动操作"
           />
@@ -479,7 +479,7 @@
           <kCheckbox v-model="selectItem.is_inherited" label="是" />
         </a-form-item>
         <a-form-item
-          v-if=" typeof selectItem.combine !== 'undefined'"
+          v-if=" typeof selectItem.is_combine !== 'undefined'"
           label="是否联动"
         >
           <kCheckbox v-model="selectItem.is_combine" label="是" />
