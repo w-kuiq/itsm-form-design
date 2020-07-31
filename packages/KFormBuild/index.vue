@@ -268,7 +268,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.setData(this.defaultValue);
-      // this.getDynamicData()
+      this.getDynamicData()
     });
   }
 };

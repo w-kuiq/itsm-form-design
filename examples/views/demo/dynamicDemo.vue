@@ -1,7 +1,7 @@
 <!--
  * @Author: wangkq
  * @Date: 2020-06-13 11:48:37
- * @LastEditTime: 2020-07-20 16:30:00
+ * @LastEditTime: 2020-07-31 16:54:08
  * @LastEditors: wangkq
  * @Description: 
  * @FilePath: /itsm-form-design/examples/views/demo/dynamicDemo.vue
@@ -9,7 +9,7 @@
 --> 
 <template>
   <div>
-    <k-form-build :value="jsonData" :disabled="true" ref="KFB" />
+    <k-form-build :value="jsonData" ref="KFB" />
   </div>
 </template>
 <script>
@@ -19,68 +19,110 @@ export default {
       name: "",
       description: "",
       jsonData: {
-        list: [
-          {
-            type: "select",
-            label: "下拉选择器",
-            options: {
-              width: "100%",
-              multiple: false,
-              disabled: false,
-              clearable: false,
-              hidden: false,
-              placeholder: "请选择",
-              dynamicKey: "select_1592025999222",
-              dynamicParam: "items",
-              dynamic: true,
-              dynamicUrl:
-                "http://rap2.taobao.org:38080/app/mock/256811/checkbox",
-              dynamicType: {},
-              options: [
-                {
-                  value: "1",
-                  label: "下拉框1"
-                },
-                {
-                  value: "2",
-                  label: "下拉框2"
-                }
-              ],
-              showSearch: false
-            },
-            model: "select_1592025999222",
-            key: "select_1592025999222",
-            rules: [
-              {
-                required: false,
-                message: "必填项"
-              }
-            ]
-          }
-        ],
-        config: {
-          layout: "horizontal",
-          labelCol: {
-            span: 4
-          },
-          wrapperCol: {
-            span: 18
-          },
-          hideRequiredMark: false,
-          customStyle: ""
-        },
-        desc: {
-          select_1592025999222: {
-            label: "下拉选择器",
-            type: "select",
-            required: false,
-            dynamic: true,
-            dynamicKey: "select_1592025999222",
-            dynamicUrl: "http://rap2.taobao.org:38080/app/mock/256811/checkbox",
-            dynamicParam: "items"
-          }
-        }
-      },
+	"list": [
+		{
+			"type": "radio",
+			"label": "单选框",
+			"options": {
+				"disabled": false,
+				"hidden": false,
+				"defaultValue": "",
+				"dynamicKey": "status",
+				"dynamic": false,
+				"combineHandle": true,
+				"options": [
+					{
+						"value": "1",
+						"label": "选项1"
+					},
+					{
+						"value": "2",
+						"label": "选项2"
+					},
+					{
+						"value": "3",
+						"label": "选项3"
+					}
+				]
+			},
+			"model": "status",
+			"key": "radio_1595927723938",
+			"rules": [
+				{
+					"required": false,
+					"message": "必填项"
+				}
+			],
+			"unique": false,
+			"is_inherited": false,
+			"combine": true
+		},
+		{
+			"type": "input",
+			"label": "输入框",
+			"icon": "icon-write",
+			"options": {
+				"type": "text",
+				"width": "100%",
+				"defaultValue": "",
+				"placeholder": "请输入",
+				"clearable": false,
+				"maxLength": null,
+				"hidden": true,
+				"disabled": false,
+				"combineHandle": false
+			},
+			"model": "input_1595927764511",
+			"key": "input_1595927764511",
+			"rules": [
+				{
+					"required": false,
+					"message": "必填项"
+				}
+			],
+			"unique": false,
+			"is_inherited": false,
+			"combine": true,
+			"is_combine": true,
+			"combine_item": "status==2"
+		}
+	],
+	"config": {
+		"layout": "horizontal",
+		"labelCol": {
+			"span": 4
+		},
+		"wrapperCol": {
+			"span": 18
+		},
+		"hideRequiredMark": false,
+		"customStyle": ""
+	},
+	"desc": {
+		"status": {
+			"label": "单选框",
+			"type": "radio",
+			"default": "",
+			"required": false,
+			"unique": false,
+			"is_inherited": false,
+			"combineHandle": true,
+			"dynamic": false,
+			"dynamicKey": "status",
+			"disabled": false
+		},
+		"input_1595927764511": {
+			"label": "输入框",
+			"type": "input",
+			"default": "",
+			"required": false,
+			"unique": false,
+			"is_inherited": false,
+			"combineHandle": false,
+			"disabled": false
+		}
+	}
+},
       dynamicData: {}
     };
   },
@@ -94,9 +136,22 @@ export default {
   methods: {
     dynamicDataInit(){
       this.$nextTick(function(){
-        this.$refs.KFB.getDynamicData();
+        // this.$refs.KFB.getDynamicData();
       })
     }
   }
 };
 </script>
+<style scoped>
+/deep/ .ant-form label{
+  font-size:12px;
+  font-weight:inherit
+}
+/deep/ .ant-form-item{
+  margin-bottom: 6px;
+}
+/deep/ .ant-input[disabled],/deep/ .ant-select-disabled .ant-select-selection{
+  background-color:#fff;
+}
+</style>
+

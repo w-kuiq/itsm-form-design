@@ -69,7 +69,7 @@ export default {
     },
     dynamicDataInit() {
       this.$nextTick(function() {
-        this.$refs.KFormBuild.getDynamicData();
+        // this.$refs.KFormBuild.getDynamicData();
       });
     }
     // dynamicDataInit() {

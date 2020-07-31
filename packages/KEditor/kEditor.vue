@@ -2,8 +2,8 @@
  * @Description: 对vue-quill-editor封装
  * @Author: kcz
  * @Date: 2020-03-30 12:44:03
- * @LastEditors: kcz
- * @LastEditTime: 2020-04-26 19:21:27
+ * @LastEditors: wangkq
+ * @LastEditTime: 2020-07-30 17:26:32
  -->
 <template>
   <quillEditor
@@ -25,6 +25,7 @@ import { quillEditor } from "vue-quill-editor"; //调用编辑器
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
+import quillConfig from './quill-config.js'
 
 export default {
   name: "editor",
@@ -33,7 +34,8 @@ export default {
   data() {
     return {
       editorOption: {
-        placeholder: this.record.options.placeholder
+        placeholder: this.record.options.placeholder,
+        ...quillConfig
       }
     };
   },
