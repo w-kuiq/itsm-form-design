@@ -512,7 +512,9 @@ export default {
             unique: item.unique,
             is_inherited: item.is_inherited ,
             combineHandle:item.options.combineHandle,
-            source:item.source?item.source:1
+            method:item.method?item.method:1,
+            source:undefined,
+            field:undefined
           };
           
           if (item.options.options) {
