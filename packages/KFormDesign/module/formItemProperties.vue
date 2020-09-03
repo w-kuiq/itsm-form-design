@@ -17,7 +17,11 @@
           v-if="!hideModel && typeof selectItem.model !== 'undefined'"
           label="数据字段"
         >
-          <a-input v-model="selectItem.model" @change="changeHandleModel($event)" placeholder="请输入" />
+          <a-input
+            v-model="selectItem.model"
+            @change="changeHandleModel($event)"
+            placeholder="请输入"
+          />
         </a-form-item>
         <!-- input type start -->
         <a-form-item v-if="selectItem.type === 'input'" label="输入框type">
@@ -87,6 +91,21 @@
         >
           <a-input v-model="options.dictCode"></a-input>
         </a-form-item>
+        <!-- 元数据动态取值渲染 start -->
+        <a-form-item
+          v-if="options.hasOwnProperty('originUrl')"
+          label="元数据选项"
+        >
+          <a-form-item label="元数据">
+            <a-select
+              :options="options.options"
+              v-model="options.defaultValue"
+            />
+          </a-form-item>
+
+          <KChangeOption v-show="!options.dynamic" v-model="options.options" />
+        </a-form-item>
+        <!-- 元数据动态取值渲染 end  -->
         <!-- 选项配置及动态数据配置 start -->
         <a-form-item
           v-if="typeof options.options !== 'undefined'"
@@ -113,7 +132,9 @@
             v-model="options.dynamicUrl"
             placeholder="动态数据来源API"
           ></a-input>
-          <a-col :span="24" v-show="options.dynamic"><a @click="testAPI">点击测试接口</a></a-col>
+          <a-col :span="24" v-show="options.dynamic"
+            ><a @click="testAPI">点击测试接口</a></a-col
+          >
           <KChangeOption v-show="!options.dynamic" v-model="options.options" />
         </a-form-item>
         <!-- 选项配置及动态数据配置 end -->
@@ -444,7 +465,7 @@
             v-model="options.treeSingleCheckable"
             label="只能勾选子节点"
           />
-           <kCheckbox
+          <kCheckbox
             v-if="typeof options.combineHandle !== 'undefined'"
             v-model="options.combineHandle"
             label="联动操作"
@@ -467,19 +488,19 @@
         </a-form-item>
 
         <a-form-item
-          v-if=" typeof selectItem.unique !== 'undefined'"
+          v-if="typeof selectItem.unique !== 'undefined'"
           label="是否唯一"
         >
           <kCheckbox v-model="selectItem.unique" label="是" />
         </a-form-item>
         <a-form-item
-          v-if=" typeof selectItem.is_inherited !== 'undefined'"
+          v-if="typeof selectItem.is_inherited !== 'undefined'"
           label="是否继承"
         >
           <kCheckbox v-model="selectItem.is_inherited" label="是" />
         </a-form-item>
         <a-form-item
-          v-if=" typeof selectItem.is_combine !== 'undefined'"
+          v-if="typeof selectItem.is_combine !== 'undefined'"
           label="是否联动"
         >
           <kCheckbox v-model="selectItem.is_combine" label="是" />
@@ -506,7 +527,7 @@
         </a-form-item>
       </a-form>
     </div>
-    <div class="close-box" @click="$emit('handleHide')">
+    <div class="close-box" @click="$emit('handle-hide')">
       <a-icon type="double-right" />
     </div>
     <k-json-modal ref="jsonModal" />
@@ -521,30 +542,29 @@
 import KChangeOption from "../../KChangeOption/index.vue";
 import kCheckbox from "../../KCheckbox/index.vue";
 import axios from "axios";
-import { codemirror } from "vue-codemirror-lite";
 import kJsonModal from "./jsonModal";
 
 export default {
   name: "formItemProperties",
   data() {
     return {
-      options: {},
+      options: {}
     };
   },
-  computed:{
-    timeFormat(){
-      return this.options.showTime
+  computed: {
+    timeFormat() {
+      return this.options.showTime;
     }
   },
   watch: {
     selectItem(val) {
       this.options = val.options || {};
     },
-    timeFormat(val){
-      this.options.format = val?'YYYY-MM-DD HH:mm:ss':this.options.format
+    timeFormat(val) {
+      this.options.format = val ? "YYYY-MM-DD HH:mm:ss" : this.options.format;
     }
   },
- 
+
   props: {
     selectItem: {
       type: Object,

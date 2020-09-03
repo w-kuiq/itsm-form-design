@@ -30,8 +30,8 @@ export const basicsList = [
     ],
     unique: false,
     is_inherited: false,
-    is_combine:false,//可被联动操作
-    combine_item:'' //联动操作对应字段
+    is_combine: false, //可被联动操作
+    combine_item: "" //联动操作对应字段
   },
   {
     type: "textarea", // 表单类型
@@ -58,8 +58,8 @@ export const basicsList = [
     ],
     unique: false,
     is_inherited: false,
-    is_combine:false,//可被联动操作
-    combine_item:'' //联动操作对应字段
+    is_combine: false, //可被联动操作
+    combine_item: "" //联动操作对应字段
   },
   {
     type: "number", // 表单类型
@@ -86,8 +86,8 @@ export const basicsList = [
     ],
     unique: false,
     is_inherited: false,
-    is_combine:false,//可被联动操作
-    combine_item:'' //联动操作对应字段
+    is_combine: false, //可被联动操作
+    combine_item: "" //联动操作对应字段
   },
   {
     type: "select", // 表单类型
@@ -102,11 +102,11 @@ export const basicsList = [
       hidden: false, // 是否隐藏，false显示，true隐藏
       placeholder: "请选择", // 默认提示文字
       dynamicKey: "",
-      dynamicParam:"",
+      dynamicParam: "",
       dynamic: false,
       dynamicUrl: "", //获取外部数据接口url
       dynamicType: {},
-      combineHandle:false, //可联动操作
+      combineHandle: false, //可联动操作
       options: [
         // 下拉选择项配置
         {
@@ -130,8 +130,8 @@ export const basicsList = [
     ],
     unique: false,
     is_inherited: false,
-    is_combine:false,//可被联动操作
-    combine_item:'' //联动操作对应字段
+    is_combine: false, //可被联动操作
+    combine_item: "" //联动操作对应字段
   },
   {
     type: "checkbox",
@@ -143,7 +143,7 @@ export const basicsList = [
       defaultValue: [],
       dynamicKey: "",
       dynamic: false,
-      combineHandle:false,//可联动操作
+      combineHandle: false, //可联动操作
       options: [
         {
           value: "1",
@@ -180,7 +180,7 @@ export const basicsList = [
       defaultValue: "", // 默认值
       dynamicKey: "",
       dynamic: false,
-      combineHandle:false,//可联动操作
+      combineHandle: false, //可联动操作
       options: [
         {
           value: "1",
@@ -206,8 +206,8 @@ export const basicsList = [
     ],
     unique: false,
     is_inherited: false,
-    is_combine:false,//可被联动操作
-    combine_item:'' //联动操作对应字段
+    is_combine: false, //可被联动操作
+    combine_item: "" //联动操作对应字段
   },
   {
     type: "date", // 表单类型
@@ -236,8 +236,8 @@ export const basicsList = [
     ],
     unique: false,
     is_inherited: false,
-    is_combine:false,//可被联动操作
-    combine_item:'' //联动操作对应字段
+    is_combine: false, //可被联动操作
+    combine_item: "" //联动操作对应字段
   },
   {
     type: "time", // 表单类型
@@ -262,8 +262,8 @@ export const basicsList = [
     ],
     unique: false,
     is_inherited: false,
-    is_combine:false,//可被联动操作
-    combine_item:'' //联动操作对应字段
+    is_combine: false, //可被联动操作
+    combine_item: "" //联动操作对应字段
   },
   {
     type: "rate", // 表单类型
@@ -286,8 +286,8 @@ export const basicsList = [
     ],
     unique: false,
     is_inherited: false,
-    is_combine:false,//可被联动操作
-    combine_item:'' //联动操作对应字段
+    is_combine: false, //可被联动操作
+    combine_item: "" //联动操作对应字段
   },
   {
     type: "slider", // 表单类型
@@ -343,8 +343,8 @@ export const basicsList = [
     ],
     unique: false,
     is_inherited: false,
-    is_combine:false,//可被联动操作
-    combine_item:'' //联动操作对应字段
+    is_combine: false, //可被联动操作
+    combine_item: "" //联动操作对应字段
   },
   {
     type: "uploadImg",
@@ -374,8 +374,8 @@ export const basicsList = [
     ],
     unique: false,
     is_inherited: false,
-    is_combine:false,//可被联动操作
-    combine_item:'' //联动操作对应字段
+    is_combine: false, //可被联动操作
+    combine_item: "" //联动操作对应字段
   },
   {
     type: "treeSelect", // 表单类型
@@ -389,8 +389,8 @@ export const basicsList = [
       clearable: false, // 是否显示清除按钮
       showSearch: false, // 是否显示搜索框，搜索选择的项的值，而不是文字
       treeCheckable: false,
-      treeSingleCheck:false, //只能勾选子节点
-      treeSingleCheckable:false, 
+      treeSingleCheck: false, //只能勾选子节点
+      treeSingleCheckable: false,
       placeholder: "请选择",
       dynamicKey: "",
       dynamic: true,
@@ -427,8 +427,8 @@ export const basicsList = [
     ],
     unique: false,
     is_inherited: false,
-    is_combine:false,//可被联动操作
-    combine_item:'' //联动操作对应字段
+    is_combine: false, //可被联动操作
+    combine_item: "" //联动操作对应字段
   },
   {
     type: "cascader", // 表单类型
@@ -476,8 +476,8 @@ export const basicsList = [
     ],
     unique: false,
     is_inherited: false,
-    is_combine:false,//可被联动操作
-    combine_item:'' //联动操作对应字段
+    is_combine: false, //可被联动操作
+    combine_item: "" //联动操作对应字段
   },
   {
     type: "batch",
@@ -517,8 +517,8 @@ export const basicsList = [
         message: "必填项"
       }
     ],
-    is_combine:false,//可被联动操作
-    combine_item:'' //联动操作对应字段
+    is_combine: false, //可被联动操作
+    combine_item: "" //联动操作对应字段
   },
   {
     type: "switch", // 表单类型
@@ -550,8 +550,8 @@ export const basicsList = [
       disabled: false // 是否禁用，false不禁用，true禁用
     },
     key: "",
-    is_combine:false,//可被联动操作
-    combine_item:'' //联动操作对应字段
+    is_combine: false, //可被联动操作
+    combine_item: "" //联动操作对应字段
   },
   {
     type: "alert",
@@ -566,8 +566,8 @@ export const basicsList = [
       closable: false
     },
     key: "",
-    is_combine:false,//可被联动操作
-    combine_item:'' //联动操作对应字段
+    is_combine: false, //可被联动操作
+    combine_item: "" //联动操作对应字段
   },
   {
     type: "text",
@@ -579,8 +579,8 @@ export const basicsList = [
       showRequiredMark: false
     },
     key: "",
-    is_combine:false,//可被联动操作
-    combine_item:'' //联动操作对应字段
+    is_combine: false, //可被联动操作
+    combine_item: "" //联动操作对应字段
   },
   {
     type: "html",
