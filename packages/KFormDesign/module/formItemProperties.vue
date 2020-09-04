@@ -21,6 +21,7 @@
             v-model="selectItem.model"
             @change="changeHandleModel($event)"
             placeholder="请输入"
+            :disabled="options.originUrl"
           />
         </a-form-item>
         <!-- input type start -->
@@ -96,19 +97,18 @@
           v-if="options.hasOwnProperty('originUrl')"
           label="元数据选项"
         >
-          <a-form-item label="元数据">
-            <a-select
-              :options="options.options"
-              v-model="options.defaultValue"
-            />
+          <a-form-item label="">
+            <a-select :options="originOptions" v-model="originValue">
+              <a-select-option v-for="d in originOptionsArr" :key="d.id">
+                {{ d.label }}
+              </a-select-option>
+            </a-select>
           </a-form-item>
-
-          <KChangeOption v-show="!options.dynamic" v-model="options.options" />
         </a-form-item>
         <!-- 元数据动态取值渲染 end  -->
         <!-- 选项配置及动态数据配置 start -->
         <a-form-item
-          v-if="typeof options.options !== 'undefined'"
+          v-if="typeof options.options !== 'undefined' && !options.originUrl"
           label="选项配置"
         >
           <a-radio-group buttonStyle="solid" v-model="options.dynamic">
@@ -485,6 +485,13 @@
             placeholder="必填校验提示信息"
           />
           <KChangeOption v-model="selectItem.rules" type="rules" />
+          <!-- <a-form-item label="">
+            <a-select :options="ruleOptions" v-model="selectItem.rules">
+              <a-select-option v-for="d in ruleOptions" :key="d.id">
+                {{ d.name }}
+              </a-select-option>
+            </a-select>
+          </a-form-item> -->
         </a-form-item>
 
         <a-form-item
@@ -548,12 +555,34 @@ export default {
   name: "formItemProperties",
   data() {
     return {
-      options: {}
+      options: {},
+      originOptionsArr: [],
+      originValue: "",
+      ruleOptions: []
     };
+  },
+  mounted() {
+    window.$$ = this;
+    axios
+      .get("http://rap2.taobao.org:38080/app/mock/256811/rulePage")
+      .then(res => {
+        this.ruleOptions = res.data.data.items;
+      });
   },
   computed: {
     timeFormat() {
       return this.options.showTime;
+    },
+    originOptions: {
+      get() {
+        let opt;
+        // eslint-disable-next-line vue/no-async-in-computed-properties
+        axios.get(this.options.originUrl).then(res => {
+          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+          this.originOptionsArr = res.data.data.items;
+        });
+        return opt;
+      }
     }
   },
   watch: {
@@ -562,6 +591,28 @@ export default {
     },
     timeFormat(val) {
       this.options.format = val ? "YYYY-MM-DD HH:mm:ss" : this.options.format;
+    },
+    originValue(val) {
+      let options = this.originOptionsArr.filter(item => {
+        return item.id == val;
+      })[0].options;
+
+      this.selectItem.model = this.originOptionsArr.filter(item => {
+        return item.id == val;
+      })[0].model;
+      if (!options.dynamic) {
+        this.options.options = options.options;
+      } else {
+        axios.get(options.dynamicUrl).then(res => {
+          let datas = res.data[options.dynamicData];
+          this.options.options = datas.map(ele => {
+            return {
+              label: ele[options.dynamicLabel],
+              value: ele[options.dynamicValue]
+            };
+          });
+        });
+      }
     }
   },
 
