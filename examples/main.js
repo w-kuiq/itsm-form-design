@@ -8,7 +8,7 @@ import {
   // setFormDesignConfig
 } from "../packages/index";
 // import Cmp from "./components/CustomComponent/index.vue";
-import selectSearch from "./components/CustomComponent/selectSearch.vue";
+// import selectSearch from "./components/CustomComponent/selectSearch.vue";
 // setFormDesignConfig({
 //   title: "测试自定义字段",
 //   list: [
