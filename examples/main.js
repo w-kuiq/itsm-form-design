@@ -29,7 +29,6 @@ import {
 //         dynamicKey: "",
 //         dynamicParam: "items",
 //         dynamic: false,
-//         dynamicUrl: "http://rap2.taobao.org:38080/app/mock/256811/checkbox", //获取外部数据接口url
 //         dynamicType: {},
 //         showSearch: false // 是否显示搜索框，搜索选择的项的值，而不是文字
 //       },

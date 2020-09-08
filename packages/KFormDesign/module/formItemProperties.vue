@@ -5,6 +5,20 @@
     </div>
     <div class="properties-body">
       <p class="hint-box" v-show="selectItem.key === ''">未选择控件</p>
+      <!-- 元数据动态取值渲染 start -->
+      <a-form-item
+        v-if="options.hasOwnProperty('originUrl')"
+        label="元数据选项"
+      >
+        <a-form-item label="">
+          <a-select :options="originOptions" v-model="originValue">
+            <a-select-option v-for="d in originOptionsArr" :key="d.id">
+              {{ d.label }}
+            </a-select-option>
+          </a-select>
+        </a-form-item>
+      </a-form-item>
+      <!-- 元数据动态取值渲染 end  -->
       <a-form v-show="selectItem.key !== ''">
         <a-form-item
           v-if="typeof selectItem.label !== 'undefined'"
@@ -92,20 +106,7 @@
         >
           <a-input v-model="options.dictCode"></a-input>
         </a-form-item>
-        <!-- 元数据动态取值渲染 start -->
-        <a-form-item
-          v-if="options.hasOwnProperty('originUrl')"
-          label="元数据选项"
-        >
-          <a-form-item label="">
-            <a-select :options="originOptions" v-model="originValue">
-              <a-select-option v-for="d in originOptionsArr" :key="d.id">
-                {{ d.label }}
-              </a-select-option>
-            </a-select>
-          </a-form-item>
-        </a-form-item>
-        <!-- 元数据动态取值渲染 end  -->
+
         <!-- 选项配置及动态数据配置 start -->
         <a-form-item
           v-if="typeof options.options !== 'undefined' && !options.originUrl"
@@ -576,6 +577,7 @@ export default {
     originOptions: {
       get() {
         let opt;
+        axios.defaults.headers.common["X-Token"] = this.options.originToken;
         // eslint-disable-next-line vue/no-async-in-computed-properties
         axios.get(this.options.originUrl).then(res => {
           // eslint-disable-next-line vue/no-side-effects-in-computed-properties
