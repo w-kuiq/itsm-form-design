@@ -5,20 +5,7 @@
     </div>
     <div class="properties-body">
       <p class="hint-box" v-show="selectItem.key === ''">未选择控件</p>
-      <!-- 元数据动态取值渲染 start -->
-      <a-form-item
-        v-if="options.hasOwnProperty('originUrl')"
-        label="元数据选项"
-      >
-        <a-form-item label="">
-          <a-select :options="originOptions" v-model="originValue">
-            <a-select-option v-for="d in originOptionsArr" :key="d.id">
-              {{ d.label }}
-            </a-select-option>
-          </a-select>
-        </a-form-item>
-      </a-form-item>
-      <!-- 元数据动态取值渲染 end  -->
+
       <a-form v-show="selectItem.key !== ''">
         <a-form-item
           v-if="typeof selectItem.label !== 'undefined'"
@@ -38,6 +25,20 @@
             :disabled="options.originUrl"
           />
         </a-form-item>
+        <!-- 元数据动态取值渲染 start -->
+        <a-form-item
+          v-if="options.hasOwnProperty('originUrl')"
+          label="元数据选项"
+        >
+          <a-form-item label="">
+            <a-select :options="originOptions" v-model="originValue">
+              <a-select-option v-for="d in originOptionsArr" :key="d.id">
+                {{ d.label }}
+              </a-select-option>
+            </a-select>
+          </a-form-item>
+        </a-form-item>
+        <!-- 元数据动态取值渲染 end  -->
         <!-- input type start -->
         <a-form-item v-if="selectItem.type === 'input'" label="输入框type">
           <a-input v-model="options.type" placeholder="请输入" />
@@ -170,7 +171,10 @@
             :count="options.max"
           />
         </a-form-item>
-        <a-form-item v-if="selectItem.type === 'select'" label="默认值">
+        <a-form-item
+          v-if="selectItem.type === 'select' && !options.originUrl"
+          label="默认值"
+        >
           <a-select :options="options.options" v-model="options.defaultValue" />
         </a-form-item>
         <a-form-item v-if="selectItem.type === 'radio'" label="默认值">

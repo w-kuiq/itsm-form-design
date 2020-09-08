@@ -19,6 +19,7 @@ import {
 //       component: "",
 //       options: {
 //         originUrl: "http://rap2.taobao.org:38080/app/mock/256811/originPage",
+//         originToken: 'xxxdsfsdfsdfsdfsd',
 //         width: "100%", // 宽度
 //         defaultValue: undefined, // 下拉选框请使用undefined为默认值
 //         multiple: false, // 是否允许多选
