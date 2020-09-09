@@ -152,24 +152,23 @@ export default {
       let KeyArr = Object.keys(desc);
       let _this = this;
       KeyArr.forEach(function(item) {
-        let listOption
+        let listOption;
         if (desc[item].hasOwnProperty("dynamicKey")) {
-          if(desc[item].type == 'treeSelect'){
-            for(let i of list){
-              if(i.key == item){
-                listOption = i.options
+          if (desc[item].type == "treeSelect") {
+            for (let i of list) {
+              if (i.key == item) {
+                listOption = i.options;
               }
             }
           }
-          if(desc[item].dynamicUrl){
+          if (desc[item].dynamicUrl) {
             _this.getAsyncData(
               desc[item].dynamicUrl,
               desc[item].dynamicKey,
               desc[item].dynamicParam,
-              listOption||{}  //该控件的所有参数
+              listOption || {} //该控件的所有参数
             );
           }
-          
         }
       });
       return this.dynamicData;
@@ -179,8 +178,9 @@ export default {
         .get(url)
         .then(res => {
           if (res.status == 200) {
-            if(listOption.treeSingleCheckable){ //如果树形控件勾选了只能勾选子节点
-              this.recursionAddParams(res.data[param])
+            if (listOption.treeSingleCheckable) {
+              //如果树形控件勾选了只能勾选子节点
+              this.recursionAddParams(res.data[param]);
             }
             this.$set(this.dynamicData, key, res.data[param]);
           }
@@ -189,13 +189,13 @@ export default {
           this.$message.error(err);
         });
     },
-    recursionAddParams(datas){
-      datas.forEach((item,i)=>{
-        if(item.children&&item.children.length>0){
-          item.disabled = true
-          this.recursionAddParams(item.children)
+    recursionAddParams(datas) {
+      datas.forEach((item, i) => {
+        if (item.children && item.children.length > 0) {
+          item.disabled = true;
+          this.recursionAddParams(item.children);
         }
-      })
+      });
     },
 
     // 批量设置某个option的值
@@ -250,37 +250,43 @@ export default {
     },
     handleChange(value, key) {
       this.$emit("change", value, key);
-      this.combineChange(value,key)
+      this.combineChange(value, key);
     },
-    combineChange(value,key){
-      let kv = key+'=='+value
-      if(this.value.desc.hasOwnProperty(key)&&this.value.desc[key].combineHandle){ //如果点击的这个组件是可联动操作的
-        this.value.list.forEach(item=>{
-          if(item.hasOwnProperty('combine_item')&&item['combine_item'].includes(kv)){
-            item.options.hidden = false
-          }else if(item.is_combine){
-            item.options.hidden = true
+    combineChange(value, key) {
+      let kv = key + "==" + value;
+      if (
+        this.value.desc.hasOwnProperty(key) &&
+        this.value.desc[key].combineHandle
+      ) {
+        //如果点击的这个组件是可联动操作的
+        this.value.list.forEach(item => {
+          if (
+            item.hasOwnProperty("combine_item") &&
+            item["combine_item"].includes(kv)
+          ) {
+            item.options.hidden = false;
+          } else if (item.is_combine) {
+            item.options.hidden = true;
           }
-        })
+        });
       }
     }
   },
   mounted() {
     this.$nextTick(() => {
       this.setData(this.defaultValue);
-      this.getDynamicData()
+      this.getDynamicData();
     });
   }
 };
 </script>
 <style scoped>
-  form /deep/ .ant-form-item{
-    margin-bottom: 12px;
-    font-size:12px;
-    font-weight: normal;
-  }
-  form /deep/ .ant-form label{
-    font-size:12px
-  }
+form /deep/ .ant-form-item {
+  margin-bottom: 12px;
+  font-size: 12px;
+  font-weight: normal;
+}
+form /deep/ .ant-form label {
+  font-size: 12px;
+}
 </style>
-

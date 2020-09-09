@@ -22,7 +22,7 @@
             v-model="selectItem.model"
             @change="changeHandleModel($event)"
             placeholder="请输入"
-            :disabled="options.originUrl"
+            :disabled="typeof options.originUrl === 'string'"
           />
         </a-form-item>
         <!-- 元数据动态取值渲染 start -->
@@ -606,6 +606,11 @@ export default {
       this.selectItem.model = this.originOptionsArr.filter(item => {
         return item.id == val;
       })[0].model;
+
+      this.selectItem.label = this.originOptionsArr.filter(item => {
+        return item.id == val;
+      })[0].label;
+
       if (!options.dynamic) {
         this.options.options = options.options;
       } else {

@@ -315,15 +315,13 @@ export default {
   methods: {
     generateKey(list, index) {
       // 生成key值
-      if(!list[index].key){
-        const key = list[index].type + "_" + new Date().getTime();
-        this.$set(list, index, {
-          ...list[index],
-          key,
-          model: key
-        });
-      }
-      
+      const key = list[index].type + "_" + new Date().getTime();
+      this.$set(list, index, {
+        ...list[index],
+        key,
+        model: key
+      });
+
       if (this.noModel.includes(list[index].type)) {
         // 删除不需要的model属性
         delete list[index].model;
@@ -333,7 +331,7 @@ export default {
       // 双击控件按钮push到list
       // 生成key值
       //如果初始值给设定了model，则key 不需要生成
-      if(item.model){
+      if (item.model) {
         if (this.noModel.includes(item.type)) {
           // 删除不需要的model属性
           delete item.model;
@@ -346,8 +344,8 @@ export default {
         this.data.list.push(record);
         this.handleSetSelectItem(record);
         return false;
-      }else{
-          if (!this.selectItem.key) {
+      } else {
+        if (!this.selectItem.key) {
           // 在没有选择表单时，将数据push到this.data.list
           const key = item.type + "_" + new Date().getTime();
           item = {
@@ -369,15 +367,14 @@ export default {
           return false;
         }
       }
-     
 
       this.$refs.KFCP.handleCopy(false, item);
     },
     handleOpenJsonModal() {
       // 打开json预览模态框
-      this.desc = {}
-      this.keyForm(this.data.list)
-      this.data.desc = this.desc
+      this.desc = {};
+      this.keyForm(this.data.list);
+      this.data.desc = this.desc;
       this.$refs.jsonModal.jsonData = this.data;
       this.$refs.jsonModal.visible = true;
     },
@@ -394,7 +391,7 @@ export default {
     },
     handlePreview() {
       // 打开预览模态框
-      this.keyForm(this.data.list)
+      this.keyForm(this.data.list);
       this.data.desc = this.desc;
       this.$refs.previewModal.jsonData = this.data;
       this.$refs.previewModal.previewWidth = this.previewOptions.width;
@@ -405,7 +402,7 @@ export default {
       // 清空
       try {
         this.data.list = [];
-        this.desc = {}
+        this.desc = {};
         this.handleSetSelectItem({ key: "" });
         this.$message.success("已清空");
         return true;
@@ -457,11 +454,11 @@ export default {
     },
     handleSave() {
       // 保存函数
-      this.desc = {}
+      this.desc = {};
       this.keyForm(this.data.list);
       this.data.desc = this.desc;
       this.$emit("save", JSON.stringify(this.data));
-      console.log(this.data)
+      console.log(this.data);
     },
     handleClose() {
       this.$emit("close");
@@ -487,13 +484,13 @@ export default {
                 //表格布局情况下
                 if (Object.keys(ele).includes("tds")) {
                   ele.tds.forEach(item => {
-                    if (item.list.length>0) {
-                      item.list.forEach(ele=>arr.push(ele))
+                    if (item.list.length > 0) {
+                      item.list.forEach(ele => arr.push(ele));
                     }
                   });
-                } else if (ele.list.length>0) {
+                } else if (ele.list.length > 0) {
                   //栅格布局的情况下
-                  ele.list.forEach(item=>arr.push(item))
+                  ele.list.forEach(item => arr.push(item));
                 }
               });
               this.keyForm(arr);
@@ -510,20 +507,20 @@ export default {
             rules: item.rules ? item.rules[1] : "",
             required: item.rules ? item.rules[0].required : "",
             unique: item.unique,
-            is_inherited: item.is_inherited ,
-            combineHandle:item.options.combineHandle,
-            method:item.method?item.method:1,
-            source:undefined,
-            field:undefined
+            is_inherited: item.is_inherited,
+            combineHandle: item.options.combineHandle,
+            method: item.method ? item.method : 1,
+            source: undefined,
+            field: undefined
           };
-          
+
           if (item.options.options) {
             this.desc[item.model].dynamic = item.options["dynamic"];
             this.desc[item.model].dynamicKey = item.options["dynamicKey"];
             this.desc[item.model].dynamicUrl = item.options["dynamicUrl"];
             this.desc[item.model].dynamicParam = item.options["dynamicParam"];
             this.desc[item.model].disabled = item.options["disabled"];
-            this.desc[item.model].options = item.options["options"]
+            this.desc[item.model].options = item.options["options"];
           }
         }
       }
