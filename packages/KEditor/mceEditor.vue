@@ -50,7 +50,7 @@ export default {
     // 即abc.com/tinymce，baseUrl需要配置成tinymce，不然发布后资源会找不到
     baseUrl: {
       type: String,
-      default: ""
+      default: "tinymce"
     },
     disabled: {
       type: Boolean,
@@ -69,10 +69,10 @@ export default {
   data() {
     return {
       init: {
-        language_url: `${this.baseUrl}/static/tinymce/langs/zh_CN.js`,
+        language_url: `${this.baseUrl}/tinymce/langs/zh_CN.js`,
         language: "zh_CN",
-        skin_url: `${this.baseUrl}/static/tinymce/skins/ui/oxide`,
-        content_css: `${this.baseUrl}/static/tinymce/skins/content/default/content.css`,
+        skin_url: `${this.baseUrl}/tinymce/skins/ui/oxide`,
+        content_css: `${this.baseUrl}/tinymce/skins/content/default/content.css`,
         // skin_url: `${this.baseUrl}/tinymce/skins/ui/oxide-dark`, // 暗色系
         // content_css: `${this.baseUrl}/tinymce/skins/content/dark/content.css`, // 暗色系
         height: 300,
