@@ -15,7 +15,7 @@ tinymce.addI18n('zh_CN',{
 "Strikethrough": "\u5220\u9664\u7ebf",
 "Superscript": "\u4e0a\u6807",
 "Subscript": "\u4e0b\u6807",
-"Clear formatting": "\u6e05\u9664\u683c\u5f0f",
+"Clear formatting": "\u6e05\u9664\u683c\u5f0f", 
 "Align left": "\u5de6\u8fb9\u5bf9\u9f50",
 "Align center": "\u4e2d\u95f4\u5bf9\u9f50",
 "Align right": "\u53f3\u8fb9\u5bf9\u9f50",
