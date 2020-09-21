@@ -319,8 +319,7 @@ export default {
       this.$set(list, index, {
         ...list[index],
         key,
-        model: key,
-        id: new Date().getTime() + parseInt((1 + Math.random()) * 65536) + ""
+        model: key
       });
 
       if (this.noModel.includes(list[index].type)) {
@@ -352,9 +351,7 @@ export default {
           item = {
             ...item,
             key,
-            model: key,
-            id:
-              new Date().getTime() + parseInt((1 + Math.random()) * 65536) + ""
+            model: key
           };
           if (this.noModel.includes(item.type)) {
             // 删除不需要的model属性
@@ -504,7 +501,7 @@ export default {
         let item = datas[i];
         if (!exceptType.includes(item.type)) {
           this.desc[item.model] = {
-            id: item.id,
+            key: item.key,
             label: item.label,
             type: item.type,
             default: item.options.defaultValue,
