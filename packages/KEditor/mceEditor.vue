@@ -107,11 +107,13 @@ export default {
         // images_upload_url: "/image/upload",
         images_upload_credentials: true,
         images_upload_handler: function(blobInfo, success, failure) {
-          console.log("innnnnn ");
           var xhr, formData;
           xhr = new XMLHttpRequest();
           xhr.withCredentials = false;
-          xhr.open("POST", "/itsm/api/v1/itsm/ticket/upload2");
+          xhr.open(
+            "POST",
+            "/itsm/api/v1/itsm/ticket/upload2"
+          );
 
           // xhr.upload.onprogress = function(e) {
           //   progress((e.loaded / e.total) * 100);
@@ -127,12 +129,12 @@ export default {
 
             json = JSON.parse(xhr.responseText);
 
-            if (!json || typeof json.location != "string") {
+            if (!json || typeof json.data.url != "string") {
               failure("Invalid JSON: " + xhr.responseText);
               return;
             }
 
-            success(json.location);
+            success(json.data.url);
           };
 
           xhr.onerror = function() {
@@ -144,6 +146,7 @@ export default {
 
           formData = new FormData();
           formData.append("file", blobInfo.blob(), blobInfo.filename());
+         
 
           xhr.send(formData);
         }
