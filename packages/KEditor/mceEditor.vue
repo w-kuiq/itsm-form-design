@@ -50,7 +50,7 @@ export default {
     // 即abc.com/tinymce，baseUrl需要配置成tinymce，不然发布后资源会找不到
     baseUrl: {
       type: String,
-      default: ""
+      default: "itsm"
     },
     disabled: {
       type: Boolean,
@@ -110,10 +110,7 @@ export default {
           var xhr, formData;
           xhr = new XMLHttpRequest();
           xhr.withCredentials = false;
-          xhr.open(
-            "POST",
-            "/itsm/api/v1/itsm/ticket/upload2"
-          );
+          xhr.open("POST", "/itsm/api/v1/itsm/ticket/upload2");
 
           // xhr.upload.onprogress = function(e) {
           //   progress((e.loaded / e.total) * 100);
@@ -146,7 +143,6 @@ export default {
 
           formData = new FormData();
           formData.append("file", blobInfo.blob(), blobInfo.filename());
-         
 
           xhr.send(formData);
         }
