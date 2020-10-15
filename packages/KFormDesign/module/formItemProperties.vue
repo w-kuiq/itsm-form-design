@@ -31,7 +31,7 @@
           label="元数据选项"
         >
           <a-form-item label="">
-            <a-select :options="originOptions" v-model="originValue">
+            <a-select v-model="originValue">
               <a-select-option v-for="d in originOptionsArr" :key="d.id">
                 {{ d.label }}
               </a-select-option>
@@ -568,11 +568,12 @@ export default {
   },
   mounted() {
     window.$$ = this;
-    axios
-      .get("http://rap2.taobao.org:38080/app/mock/256811/rulePage")
-      .then(res => {
-        this.ruleOptions = res.data.data.items;
-      });
+    // 正则校验规则
+    // axios
+    //   .get("http://rap2.taobao.org:38080/app/mock/256811/rulePage")
+    //   .then(res => {
+    //     this.ruleOptions = res.data.data.items;
+    //   });
   },
   computed: {
     timeFormat() {
