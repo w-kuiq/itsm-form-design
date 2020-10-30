@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-03-30 12:44:03
  * @LastEditors: wangkq
- * @LastEditTime: 2020-07-30 17:26:32
+ * @LastEditTime: 2020-10-30 10:14:25
  -->
 <template>
   <quillEditor
@@ -25,7 +25,7 @@ import { quillEditor } from "vue-quill-editor"; //调用编辑器
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
-import quillConfig from './quill-config.js'
+import quillConfig from "./quill-config.js";
 
 export default {
   name: "editor",
