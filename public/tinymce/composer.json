@@ -19,8 +19,8 @@
 		"component": {
 			"scripts": [
 				"tinymce.js",
-				"plugins/*/plugin.js",
-				"themes/*/theme.js",
+				"plugins/*/plugin.min.js",
+				"themes/*/theme.min.js",
 				"themes/*/icons.js"
 			],
 			"files": [
