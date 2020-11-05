@@ -5,5 +5,5 @@
  * @LastEditors: wangkq
  * @LastEditTime: 2020-10-12 20:32:48
  */
-import KEditor from "./mceEditor.vue";
+import KEditor from "./mceEditor2.vue";
 export default KEditor;
