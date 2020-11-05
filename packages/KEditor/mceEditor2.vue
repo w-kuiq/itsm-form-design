@@ -103,8 +103,8 @@ export default {
       default_link_target: '_self',
       myValue: this.value,
       inits: {
-        // language_url: `${this.baseUrl}/static/tinymce/langs/zh_CN.js`,
-        // language: "zh_CN",
+        language_url: `/static/tinymce/langs/zh_CN.js`,
+        language: "zh_CN",
         // skin_url: `${this.baseUrl}/static/tinymce/skins/ui/oxide`,
         // content_css: `${this.baseUrl}/static/tinymce/skins/content/default/content.css`,
 
