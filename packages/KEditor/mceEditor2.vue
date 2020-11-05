@@ -200,7 +200,7 @@ export default {
   },
   watch: {
     value(val) {
-       this.myValue = newValue;
+      this.myValue = val;
       if (!this.hasChange && this.uploadVisible) {
         this.$nextTick(() =>
           window.tinymce.get(this.tinymceId).setContent(val || ''))
