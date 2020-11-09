@@ -319,7 +319,6 @@ export default {
             editor.setContent(this.value);
           }
           editor.on("NodeChange Change KeyUp SetContent", () => {
-            console.log('change')
             this.hasChange = true;
             // this.$emit(
             //   "input",
@@ -344,19 +343,35 @@ export default {
           xhr = new XMLHttpRequest();
           xhr.withCredentials = false;
           xhr.open("POST", "/itsm/api/v1/itsm/ticket/upload2");
-          xhr.onload = () => {
+          // xhr.onload = () => {
+          //   var json;
+          //   if (xhr.status !== 200) {
+          //     failFun("HTTP Error: " + xhr.status);
+          //     return;
+          //   }
+          //   json = JSON.parse(xhr.responseText);
+          //   if (!json || typeof json.location !== "string") {
+          //     failFun("Invalid JSON: " + xhr.responseText);
+          //     return;
+          //   }
+          //   // succFun(json.location);
+          //   succFun(json.data.url);
+          // };
+          xhr.onload = function() {
             var json;
-            if (xhr.status !== 200) {
-              failFun("HTTP Error: " + xhr.status);
+            if (xhr.status < 200 || xhr.status >= 300) {
+              failure("HTTP Error: " + xhr.status);
               return;
             }
+
             json = JSON.parse(xhr.responseText);
-            if (!json || typeof json.location !== "string") {
-              failFun("Invalid JSON: " + xhr.responseText);
+
+            if (!json || typeof json.data.url != "string") {
+              failure("Invalid JSON: " + xhr.responseText);
               return;
             }
-            // succFun(json.location);
-            succFun(json.data.url);
+
+           succFun(json.data.url);
           };
           formData = new FormData();
           formData.append("file", blobInfo.blob(), blobInfo.filename());
