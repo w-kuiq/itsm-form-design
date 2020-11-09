@@ -325,8 +325,8 @@ export default {
             //   editor.getContent(),
             //   editor.getContent({ format: "text" })
             // );
-            this.$emit("change",   editor.getContent({ format: "text" }));
-            this.$emit("input", editor.getContent({ format: "text" }));
+            this.$emit("change",   editor.getContent());
+            this.$emit("input", editor.getContent());
           });
         },
         setup: editor => {
