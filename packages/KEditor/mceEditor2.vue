@@ -1,15 +1,21 @@
 <template>
   <div class="tinymce-container" :style="{ width: containerWidth }">
-    <!-- <textarea :id="tinymceId" class="tinymce-textarea" /> -->
+    <textarea 
+      :id="tinymceId" 
+      class="tinymce-textarea" 
+      v-model="myValue"
+      :init="inits"
+      :disabled="record.options.disabled || parentDisabled"
+      @onClick="onClick"/>
     <!-- 插件：插入文件和图片 -->
-    <editor
+    <!-- <editor
       v-model="myValue"
       :init="inits"
       :value="value"
       :disabled="record.options.disabled || parentDisabled"
       @onClick="onClick"
     >
-    </editor>
+    </editor> -->
   </div>
 </template>
 
@@ -242,7 +248,7 @@ export default {
           this.$message.error(err.message);
           return;
         }
-        // this.initTinymce()
+        this.initTinymce()
       });
     },
     initTinymce() {
@@ -313,12 +319,15 @@ export default {
             editor.setContent(this.value);
           }
           editor.on("NodeChange Change KeyUp SetContent", () => {
+            console.log('change')
             this.hasChange = true;
-            this.$emit(
-              "input",
-              editor.getContent(),
-              editor.getContent({ format: "text" })
-            );
+            // this.$emit(
+            //   "input",
+            //   editor.getContent(),
+            //   editor.getContent({ format: "text" })
+            // );
+            this.$emit("change",   editor.getContent({ format: "text" }));
+            this.$emit("input", editor.getContent({ format: "text" }));
           });
         },
         setup: editor => {
@@ -334,7 +343,7 @@ export default {
           var xhr, formData;
           xhr = new XMLHttpRequest();
           xhr.withCredentials = false;
-          xhr.open("POST", "/knowledge/v1/files");
+          xhr.open("POST", "/itsm/api/v1/itsm/ticket/upload2");
           xhr.onload = () => {
             var json;
             if (xhr.status !== 200) {
@@ -346,7 +355,8 @@ export default {
               failFun("Invalid JSON: " + xhr.responseText);
               return;
             }
-            succFun(json.location);
+            // succFun(json.location);
+            succFun(json.data.url);
           };
           formData = new FormData();
           formData.append("file", blobInfo.blob(), blobInfo.filename());
