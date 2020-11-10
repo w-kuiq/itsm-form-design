@@ -31,7 +31,7 @@
           label="元数据选项"
         >
           <a-form-item label="">
-            <a-select v-model="originValue">
+            <a-select v-model="originValue" :options="originOptions">
               <a-select-option v-for="d in originOptionsArr" :key="d.id">
                 {{ d.label }}
               </a-select-option>
