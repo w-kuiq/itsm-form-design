@@ -1,7 +1,7 @@
 /*
  * @Author: wangkq
  * @Date: 2020-09-10 16:02:35
- * @LastEditTime: 2020-11-04 15:52:23
+ * @LastEditTime: 2020-11-13 11:03:24
  * @LastEditors: wangkq
  * @Description:
  * @FilePath: /itsm-form-design/packages/KEditor/toolbar.js
@@ -11,7 +11,7 @@
 // Detail list see https://www.tinymce.com/docs/advanced/editor-control-identifiers/#toolbarcontrols
 
 const toolbar = [
-  "toc | formatselect fontselect fontsizeselect | bold italic underline strikethrough forecolor backcolor | alignleft aligncenter alignright | bullist numlist | upload fullscreen"
+  "toc | formatselect fontselect fontsizeselect | bold italic underline strikethrough forecolor backcolor | alignleft aligncenter alignright | bullist numlist | fullscreen"
 ];
 
 export default toolbar;

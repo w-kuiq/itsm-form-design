@@ -1,12 +1,13 @@
 <template>
   <div class="tinymce-container" :style="{ width: containerWidth }">
-    <textarea 
-      :id="tinymceId" 
-      class="tinymce-textarea" 
+    <textarea
+      :id="tinymceId"
+      class="tinymce-textarea"
       v-model="myValue"
       :init="inits"
       :disabled="record.options.disabled || parentDisabled"
-      @onClick="onClick"/>
+      @onClick="onClick"
+    />
     <!-- 插件：插入文件和图片 -->
     <!-- <editor
       v-model="myValue"
@@ -27,7 +28,6 @@
 import plugins from "./plugins";
 import toolbar from "./toolbar";
 import load from "./dynamicLoadScript";
-import Editor from "@tinymce/tinymce-vue";
 
 // why use this cdn, detail see https://github.com/PanJiaChen/tinymce-all-in-one
 // const tinymceCDN = 'https://cdn.jsdelivr.net/npm/tinymce@5.4.2/tinymce.min.js'
@@ -35,9 +35,6 @@ const tinymceLoc = "/static/tinymce/tinymce.min.js";
 
 export default {
   name: "Tinymce",
-  components: {
-    Editor
-  },
   props: {
     id: {
       type: String,
@@ -248,7 +245,7 @@ export default {
           this.$message.error(err.message);
           return;
         }
-        this.initTinymce()
+        this.initTinymce();
       });
     },
     initTinymce() {
@@ -280,7 +277,7 @@ export default {
         link_title: false,
         link_context_toolbar: true,
         link_list: this.links,
-        readonly: this.readonly,
+        readonly: this.record.options.disabled,
         placeholder: this.placeholder,
         // autoresize
         /* autoresize_on_init: false,
@@ -325,7 +322,7 @@ export default {
             //   editor.getContent(),
             //   editor.getContent({ format: "text" })
             // );
-            this.$emit("change",   editor.getContent());
+            this.$emit("change", editor.getContent());
             this.$emit("input", editor.getContent());
           });
         },
@@ -371,7 +368,7 @@ export default {
               return;
             }
 
-           succFun(json.data.url);
+            succFun(json.data.url);
           };
           formData = new FormData();
           formData.append("file", blobInfo.blob(), blobInfo.filename());
