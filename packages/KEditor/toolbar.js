@@ -1,7 +1,7 @@
 /*
  * @Author: wangkq
  * @Date: 2020-09-10 16:02:35
- * @LastEditTime: 2020-11-13 11:03:24
+ * @LastEditTime: 2020-11-13 15:54:33
  * @LastEditors: wangkq
  * @Description:
  * @FilePath: /itsm-form-design/packages/KEditor/toolbar.js

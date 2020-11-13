@@ -277,7 +277,7 @@ export default {
         link_title: false,
         link_context_toolbar: true,
         link_list: this.links,
-        readonly: this.record.options.disabled,
+        readonly: this.record.options.disabled || this.parentDisabled,
         placeholder: this.placeholder,
         // autoresize
         /* autoresize_on_init: false,
@@ -357,14 +357,14 @@ export default {
           xhr.onload = function() {
             var json;
             if (xhr.status < 200 || xhr.status >= 300) {
-              failure("HTTP Error: " + xhr.status);
+              failFun("HTTP Error: " + xhr.status);
               return;
             }
 
             json = JSON.parse(xhr.responseText);
 
             if (!json || typeof json.data.url != "string") {
-              failure("Invalid JSON: " + xhr.responseText);
+              failFun("Invalid JSON: " + xhr.responseText);
               return;
             }
 
