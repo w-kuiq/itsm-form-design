@@ -32,7 +32,11 @@
         >
           <a-form-item label="">
             <a-select v-model="originValue" :options="originOptions">
-              <a-select-option v-for="d in originOptionsArr" :key="d.id">
+              <a-select-option
+                v-for="d in originOptionsArr"
+                :key="d.id"
+                :value="d.id"
+              >
                 {{ d.label }}
               </a-select-option>
             </a-select>
@@ -595,6 +599,9 @@ export default {
   watch: {
     selectItem(val) {
       this.options = val.options || {};
+      this.originValue = this.originOptionsArr.filter(item => {
+        return item.label === val.label;
+      })[0].id;
     },
     timeFormat(val) {
       this.options.format = val ? "YYYY-MM-DD HH:mm:ss" : this.options.format;
