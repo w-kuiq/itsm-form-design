@@ -330,7 +330,7 @@ export const basicsList = [
       data: "{}",
       fileName: "file",
       headers: {},
-      action: "http://cdn.kcz66.com/uploadFile.txt",
+      action: "/itsm/api/v1/itsm/ticket/upload2",
       placeholder: "上传"
     },
     model: "",
@@ -361,7 +361,7 @@ export const basicsList = [
       placeholder: "上传",
       fileName: "image",
       headers: {},
-      action: "http://cdn.kcz66.com/upload-img.txt",
+      action: "/itsm/api/v1/itsm/ticket/upload2",
       listType: "picture-card"
     },
     model: "",
