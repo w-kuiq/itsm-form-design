@@ -525,6 +525,12 @@
             placeholder="联动组件数据字段"
           />
         </a-form-item>
+        <a-form-item
+          v-if="typeof selectItem.is_auth !== 'undefined'"
+          label="是否全局权限"
+        >
+          <kCheckbox v-model="selectItem.is_auth" label="是" />
+        </a-form-item>
 
         <!-- 表格选项 -->
         <a-form-item v-if="selectItem.type === 'table'" label="表格样式CSS">

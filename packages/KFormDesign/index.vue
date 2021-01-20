@@ -509,6 +509,7 @@ export default {
             required: item.rules ? item.rules[0].required : "",
             unique: item.unique,
             is_inherited: item.is_inherited,
+            is_auth: item.is_auth,
             combineHandle: item.options.combineHandle,
             method: item.method ? item.method : 1,
             source: undefined,
