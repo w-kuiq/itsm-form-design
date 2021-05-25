@@ -70,7 +70,7 @@ function setFormDesignConfig(config) {
     // uploadFile 配置 start
     // 配置uploadFile默认上传地址
     basicsList[10].options.action =
-      config.uploadFile || "http://cdn.kcz66.com/uploadFile.txt";
+      config.uploadFile || "/itsm/api/v1/itsm/ticket/upload2";
 
     // 配置uploadFile默认额外参数
     basicsList[10].options.data = JSON.stringify(config.uploadFileData || {});
