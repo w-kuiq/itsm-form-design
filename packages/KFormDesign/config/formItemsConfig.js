@@ -172,7 +172,9 @@ export const basicsList = [
       }
     ],
     unique: false,
-    is_inherited: false
+    is_inherited: false,
+    is_combine: false, //可被联动操作
+    combine_item: "" //联动操作对应字段
   },
   {
     type: "radio", // 表单类型

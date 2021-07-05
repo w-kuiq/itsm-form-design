@@ -254,6 +254,7 @@ export default {
     },
     combineChange(value, key) {
       let kv = key + "==" + value;
+      let index;
       if (
         this.value.desc.hasOwnProperty(key) &&
         this.value.desc[key].combineHandle
@@ -262,12 +263,14 @@ export default {
         this.value.list.forEach(item => {
           if (
             item.hasOwnProperty("combine_item") &&
-            item["combine_item"].includes(kv)
+            item["combine_item"].split(",").includes(kv)
           ) {
             console.log(item);
+            index = item["combine_item"].split(",").indexOf(kv);
+            console.log("index", index);
             if (item.is_combine && item.combine_code) {
               let code = eval("(" + item.combine_code + ")");
-              // item.label = "111";
+              code = code[index];
               item = Object.assign(item, code);
               console.log(item);
             }
