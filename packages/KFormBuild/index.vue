@@ -264,10 +264,19 @@ export default {
             item.hasOwnProperty("combine_item") &&
             item["combine_item"].includes(kv)
           ) {
-            item.options.hidden = false;
-          } else if (item.is_combine) {
-            item.options.hidden = true;
+            console.log(item);
+            if (item.is_combine && item.combine_code) {
+              let code = eval("(" + item.combine_code + ")");
+              // item.label = "111";
+              item = Object.assign(item, code);
+              console.log(item);
+            }
+
+            // item.options.hidden = false;
           }
+          // else if (item.is_combine) {
+          //   item.options.hidden = true;
+          // }
         });
       }
     }
