@@ -513,7 +513,10 @@ export default {
             combineHandle: item.options.combineHandle,
             method: item.method ? item.method : 1,
             source: undefined,
-            field: undefined
+            field: undefined,
+            is_combine: item.is_combine ? item.is_combine : undefined,
+            combine_code: item.combine_code ? item.combine_code : undefined,
+            combine_item: item.combine_item ? item.combine_item : undefined
           };
 
           if (item.options.options) {
@@ -523,6 +526,8 @@ export default {
             this.desc[item.model].dynamicParam = item.options["dynamicParam"];
             this.desc[item.model].disabled = item.options["disabled"];
             this.desc[item.model].options = item.options["options"];
+            // this.desc[item.model].combine_code = item.options["combine_code"];
+            // this.desc[item.model].combine_item = item.options["combine_item"];
           }
         }
       }

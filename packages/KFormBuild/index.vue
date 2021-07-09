@@ -252,38 +252,117 @@ export default {
       this.$emit("change", value, key);
       this.combineChange(value, key);
     },
+    // 组件代码联动
+    combineFunc2(arr, v, k) {
+      this.value.list = arr;
+      this.combineChange(v, k);
+    },
+    // 组件代码联动
+    combineFunc(desc, model) {
+      let list = this.value.list;
+      list.forEach(item => {
+        if (item.model == model) {
+          item = Object.assign(item, desc);
+        }
+      });
+      console.log(list);
+    },
+    // 组件代码动态切换
     combineChange(value, key) {
+      let _this = this;
       let kv = key + "==" + value;
       let index;
+      debugger;
+
+      let desc = this.value.desc;
+      let list = this.value.list;
       if (
         this.value.desc.hasOwnProperty(key) &&
         this.value.desc[key].combineHandle
       ) {
         //如果点击的这个组件是可联动操作的
+
+        // for (let item in desc) {
+        //   if (
+        //     desc[item].hasOwnProperty("combine_item") &&
+        //     desc[item]["combine_item"] &&
+        //     desc[item]["combine_item"].split(",").includes(kv)
+        //   ) {
+        //     index = desc[item]["combine_item"].split(",").indexOf(kv);
+        //     if (desc[item].is_combine && desc[item].combine_code) {
+        //       let code = eval("(" + desc[item].combine_code + ")");
+        //       code = code[index];
+        //       desc[item] = Object.assign(desc[item], code);
+        //       console.log(desc);
+        //       console.log(_this.value.list);
+        //       _this.combineFunc(desc[item], item);
+        //     }
+        //   }else{
+
+        //   }
+        // }
+        this.combineF(kv);
+        return;
+
         this.value.list.forEach(item => {
+          // if(item.type=="grid"){}
           if (
             item.hasOwnProperty("combine_item") &&
             item["combine_item"].split(",").includes(kv)
           ) {
-            console.log(item);
             index = item["combine_item"].split(",").indexOf(kv);
-            console.log("index", index);
             if (item.is_combine && item.combine_code) {
               let code = eval("(" + item.combine_code + ")");
               code = code[index];
               item = Object.assign(item, code);
-              console.log(item);
             }
-
-            // item.options.hidden = false;
+          } else if (item.hasOwnProperty("columns")) {
+            item.columns.forEach(ele => {
+              listArr = [...ele.list];
+            });
           }
-          // else if (item.is_combine) {
-          //   item.options.hidden = true;
-          // }
         });
+        if (listArr.length > 0) {
+          this.combineFunc2(listArr, value, key);
+        }
       }
+    },
+    combineF(kv) {
+      let index;
+      this.value.list.forEach(item => {
+        if (
+          item.hasOwnProperty("combine_item") &&
+          item["combine_item"].split(",").includes(kv)
+        ) {
+          index = item["combine_item"].split(",").indexOf(kv);
+          if (item.is_combine && item.combine_code) {
+            let code = eval("(" + item.combine_code + ")");
+            code = code[index];
+            item = Object.assign(item, code);
+          }
+        } else if (item.hasOwnProperty("columns")) {
+          item.columns.forEach(ele => {
+            // listArr.push(...ele.list)
+            ele.list.forEach(item=>{
+              if (
+                item.hasOwnProperty("combine_item") &&
+                item["combine_item"].split(",").includes(kv)
+              ) {
+                index = item["combine_item"].split(",").indexOf(kv);
+                if (item.is_combine && item.combine_code) {
+                  let code = eval("(" + item.combine_code + ")");
+                  code = code[index];
+                  item = Object.assign(item, code);
+                }
+              }
+            })
+          });
+        }
+      });
+     
     }
   },
+
   mounted() {
     this.$nextTick(() => {
       this.setData(this.defaultValue);

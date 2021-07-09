@@ -529,7 +529,7 @@
           v-if="typeof selectItem.is_combine !== 'undefined'"
           label="联动组件代码"
         >
-          <kCheckbox v-model="selectItem.combine_code" label="是" />
+          <kCheckbox v-model="selectItem.combine_code_check" label="是" />
           <a-textarea
             v-model="selectItem.combine_code"
             placeholder="联动组件数据代码（请严格按照JSON格式输入）"
