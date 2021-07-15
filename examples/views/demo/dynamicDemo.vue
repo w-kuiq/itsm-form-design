@@ -43,6 +43,51 @@ export default {
             ],
             is_combine: false,
             combine_item: ""
+          },
+
+          {
+            type: "select", // 组件类型
+            label: "产品角色", // 组件名称
+            icon: "icon-xiala",
+            options: {
+              width: "100%", // 宽度
+              defaultValue: undefined, // 下拉选框请使用undefined为默认值
+              multiple: false, // 是否允许多选
+              disabled: false, // 是否禁用
+              clearable: false, // 是否显示清除按钮
+              hidden: false, // 是否隐藏，false显示，true隐藏
+              placeholder: "请选择", // 默认提示文字
+              dynamicKey: "__ROLE_ID__",
+              dynamicParam: "data",
+              dynamic: true,
+              dynamicUrl: "/itsm/api/v1/itsm/dynamic_data/product_role_list/", // 获取外部数据接口url
+              dynamicType: {},
+              options: [
+                // 下拉选择项配置
+                {
+                  value: "1",
+                  label: "下拉框1"
+                },
+                {
+                  value: "2",
+                  label: "下拉框2"
+                }
+              ],
+              showSearch: false // 是否显示搜索框，搜索选择的项的值，而不是文字
+            },
+            model: "__ROLE_ID__", // 数据字段
+            key: "__ROLE_ID__",
+            rules: [
+              // 校验规则
+              {
+                required: false,
+                message: "必填项"
+              }
+            ],
+            unique: false,
+            is_inherited: false,
+            is_combine: false, // 可被联动操作
+            combine_item: "" // 联动操作对应字段
           }
         ],
         config: {

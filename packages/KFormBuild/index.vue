@@ -174,8 +174,16 @@ export default {
       return this.dynamicData;
     },
     getAsyncData(url, key, param, listOption) {
+      let params = {};
+      if (window.sessionStorage.getItem("porcess_instance_id")) {
+        params = {
+          porcess_instance_id: window.sessionStorage.getItem(
+            "porcess_instance_id"
+          )
+        };
+      }
       axios
-        .get(url)
+        .get(url, { params: params })
         .then(res => {
           if (res.status == 200) {
             if (listOption.treeSingleCheckable) {
@@ -272,7 +280,6 @@ export default {
       let _this = this;
       let kv = key + "==" + value;
       let index;
-      debugger;
 
       let desc = this.value.desc;
       let list = this.value.list;
@@ -302,29 +309,29 @@ export default {
         //   }
         // }
         this.combineF(kv);
-        return;
+        // return;
 
-        this.value.list.forEach(item => {
-          // if(item.type=="grid"){}
-          if (
-            item.hasOwnProperty("combine_item") &&
-            item["combine_item"].split(",").includes(kv)
-          ) {
-            index = item["combine_item"].split(",").indexOf(kv);
-            if (item.is_combine && item.combine_code) {
-              let code = eval("(" + item.combine_code + ")");
-              code = code[index];
-              item = Object.assign(item, code);
-            }
-          } else if (item.hasOwnProperty("columns")) {
-            item.columns.forEach(ele => {
-              listArr = [...ele.list];
-            });
-          }
-        });
-        if (listArr.length > 0) {
-          this.combineFunc2(listArr, value, key);
-        }
+        // this.value.list.forEach(item => {
+        //   // if(item.type=="grid"){}
+        //   if (
+        //     item.hasOwnProperty("combine_item") &&
+        //     item["combine_item"].split(",").includes(kv)
+        //   ) {
+        //     index = item["combine_item"].split(",").indexOf(kv);
+        //     if (item.is_combine && item.combine_code) {
+        //       let code = eval("(" + item.combine_code + ")");
+        //       code = code[index];
+        //       item = Object.assign(item, code);
+        //     }
+        //   } else if (item.hasOwnProperty("columns")) {
+        //     item.columns.forEach(ele => {
+        //       listArr = [...ele.list];
+        //     });
+        //   }
+        // });
+        // if (listArr.length > 0) {
+        //   this.combineFunc2(listArr, value, key);
+        // }
       }
     },
     combineF(kv) {
@@ -343,7 +350,7 @@ export default {
         } else if (item.hasOwnProperty("columns")) {
           item.columns.forEach(ele => {
             // listArr.push(...ele.list)
-            ele.list.forEach(item=>{
+            ele.list.forEach(item => {
               if (
                 item.hasOwnProperty("combine_item") &&
                 item["combine_item"].split(",").includes(kv)
@@ -355,11 +362,10 @@ export default {
                   item = Object.assign(item, code);
                 }
               }
-            })
+            });
           });
         }
       });
-     
     }
   },
 
