@@ -175,10 +175,10 @@ export default {
     },
     getAsyncData(url, key, param, listOption) {
       let params = {};
-      if (window.sessionStorage.getItem("porcess_instance_id")) {
+      if (window.sessionStorage.getItem("process_instance_id")) {
         params = {
-          porcess_instance_id: window.sessionStorage.getItem(
-            "porcess_instance_id"
+          process_instance_id: window.sessionStorage.getItem(
+            "process_instance_id"
           )
         };
       }
