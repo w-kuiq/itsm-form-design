@@ -345,6 +345,9 @@ export default {
           if (item.is_combine && item.combine_code) {
             let code = eval("(" + item.combine_code + ")");
             code = code[index];
+            if (code.hasOwnProperty("options")) {
+              code.options = Object.assign(item.options, code.options);
+            }
             item = Object.assign(item, code);
           }
         } else if (item.hasOwnProperty("columns")) {
@@ -359,6 +362,9 @@ export default {
                 if (item.is_combine && item.combine_code) {
                   let code = eval("(" + item.combine_code + ")");
                   code = code[index];
+                  if (code.hasOwnProperty("options")) {
+                    code.options = Object.assign(item.options, code.options);
+                  }
                   item = Object.assign(item, code);
                 }
               }
