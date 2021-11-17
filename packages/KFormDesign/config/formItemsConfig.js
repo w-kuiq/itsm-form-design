@@ -507,7 +507,10 @@ export const basicsList = [
       width: "100%"
     },
     model: "",
-    key: ""
+    key: "",
+    is_inherited: false,
+    is_combine: false, //可被联动操作
+    combine_item: "" //联动操作对应字段
   },
   {
     type: "editor",
