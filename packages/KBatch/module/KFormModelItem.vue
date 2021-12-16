@@ -23,7 +23,8 @@
         'uploadImg',
         'uploadFile',
         'cascader',
-        'treeSelect'
+        'treeSelect',
+        'selectSearch'
       ].includes(record.type)
     "
     :prop="`domains.${index}.${record.model}`"
