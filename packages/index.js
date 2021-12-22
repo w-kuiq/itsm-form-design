@@ -84,7 +84,7 @@ function setFormDesignConfig(config) {
     // uploadImage配置 start
     // 配置uploadImage默认上传地址
     basicsList[11].options.action =
-      config.uploadImage || "http://cdn.kcz66.com/upload-img.txt";
+      config.uploadImage || "/itsm/api/v1/itsm/ticket/upload2";
     // 配置uploadImage默认额外参数
     basicsList[11].options.data = JSON.stringify(config.uploadImageData || {});
     // 配置uploadFile默认name
