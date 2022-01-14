@@ -110,7 +110,8 @@ export default {
               name: item.name,
               status: item.status,
               uid: item.uid,
-              url: res.data.url || ""
+              url: res.data.url || "",
+              file_size: res.data.file_size || ""
             };
           } else {
             return {
@@ -118,7 +119,8 @@ export default {
               name: item.name,
               status: item.status,
               uid: item.uid,
-              url: item.url || ""
+              url: item.url || "",
+              file_size: item.file_size || ""
             };
           }
         });
