@@ -94,7 +94,8 @@ export default {
         "treeSelect",
         "switch",
         "text",
-        "html"
+        "html",
+        "selectSearch"
       ],
       rightMenuSelectValue: {},
       showRightMenu: false,
