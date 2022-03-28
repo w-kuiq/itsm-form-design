@@ -28,7 +28,6 @@
 </template>
 <script>
 import axios from "axios";
-
 export default {
   name: "SelectSearch",
   // eslint-disable-next-line vue/require-prop-types
