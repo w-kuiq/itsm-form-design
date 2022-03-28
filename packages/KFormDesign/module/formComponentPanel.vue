@@ -95,7 +95,8 @@ export default {
         "switch",
         "text",
         "html",
-        "selectSearch"
+        "selectSearch",
+        "test"
       ],
       rightMenuSelectValue: {},
       showRightMenu: false,

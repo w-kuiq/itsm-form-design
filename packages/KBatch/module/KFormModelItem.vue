@@ -23,9 +23,7 @@
         'uploadImg',
         'uploadFile',
         'cascader',
-        'treeSelect',
-        'selectSearch',
-        'test'
+        'treeSelect'
       ].includes(record.type)
     "
     :prop="`domains.${index}.${record.model}`"
@@ -268,7 +266,18 @@
     v-else-if="record.type === 'html'"
     v-html="record.options.defaultValue"
   ></div>
-  <a-select
+  <!-- 自定义组件-->
+  <selectSearch
+    v-else-if="record.type === 'selectSearch'"
+    :record="record"
+    :value="value"
+    :disabled="record.options.disabled || parentDisabled"
+    @change="handleChange"
+  />
+  <!-- 上传图片 -->
+
+  <!-- <a-select
+    :style="`width:${record.options.width}`"
     v-else-if="record.type === 'selectSearch'"
     :placeholder="record.options.placeholder"
     :showSearch="record.options.filterable"
@@ -284,7 +293,7 @@
     :mode="record.options.multiple ? 'multiple' : ''"
     :value="value"
     @change="handleChange"
-  />
+  /> -->
 
   <div v-else>
     <!-- 空 -->
@@ -301,6 +310,7 @@ import UploadFile from "../../UploadFile";
 import UploadImg from "../../UploadImg";
 import KDatePicker from "../../KDatePicker";
 import KTimePicker from "../../KTimePicker";
+import selectSearch from "../../../examples/components/CustomComponent/selectSearch.vue";
 export default {
   name: "KFormItem",
   props: [
@@ -315,7 +325,8 @@ export default {
     UploadImg,
     UploadFile,
     KDatePicker,
-    KTimePicker
+    KTimePicker,
+    selectSearch
   },
   computed: {
     customList() {
