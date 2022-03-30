@@ -271,33 +271,11 @@
     v-else-if="record.type === 'selectSearch'"
     :record="record"
     :value="value"
+    :rules="record.rules"
     :disabled="record.options.disabled || parentDisabled"
     @change="handleChange"
   />
   <!-- 上传图片 -->
-
-  <!-- <a-select
-    :style="`width:${record.options.width}`"
-    v-else-if="record.type === 'selectSearch'"
-    :placeholder="record.options.placeholder"
-    :showSearch="record.options.filterable"
-    :options="
-      !record.options.dynamic
-        ? record.options.options
-        : dynamicData[record.options.dynamicKey]
-        ? dynamicData[record.options.dynamicKey]
-        : []
-    "
-    :disabled="record.options.disabled || parentDisabled"
-    :allowClear="record.options.clearable"
-    :mode="record.options.multiple ? 'multiple' : ''"
-    :value="value"
-    @change="handleChange"
-  /> -->
-
-  <div v-else>
-    <!-- 空 -->
-  </div>
 </template>
 <script>
 /*

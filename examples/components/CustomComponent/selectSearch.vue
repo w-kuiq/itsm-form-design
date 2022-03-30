@@ -9,16 +9,18 @@
   <div>
     <a-select
       show-search
-      mode="multiple"
+      :mode="record.options.multiple ? 'multiple' : ''"
       :value="value"
       :placeholder="record.options.placeholder"
       :default-active-first-option="false"
       :show-arrow="false"
       :filter-option="false"
       :not-found-content="null"
-      :disabled="disabled"
+      :disabled="record.options.disabled || parentDisabled"
+      :allowClear="record.options.clearable"
       @search="handleSearch"
       @change="handleChange"
+      :rules="rules"
     >
       <a-select-option v-for="d in data" :key="d.value">
         {{ d.label }}
@@ -31,7 +33,7 @@ import axios from "axios";
 export default {
   name: "SelectSearch",
   // eslint-disable-next-line vue/require-prop-types
-  props: ["record", "value", "disabled", "dynamicData", "list"],
+  props: ["record", "value", "disabled", "dynamicData", "list", "rules"],
   data() {
     return {
       data: [],
