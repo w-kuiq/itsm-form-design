@@ -137,13 +137,26 @@ export default {
               }
             }
             this.form.setFieldsValue(json);
+            this.form.getFieldsValue();
           } else {
             this.form.setFieldsValue(json);
+            this.setChange(json);
+            // console.log(json);
+            // console.log(this.form);
+            // console.log(this.form.getFieldDecorator());
           }
         } catch (err) {
           reject(err);
         }
       });
+    },
+    setChange(json) {
+      for (const key in json) {
+        if (Object.hasOwnProperty.call(json, key)) {
+          const element = json[key];
+          this.combineChange(element, key);
+        }
+      }
     },
     // 获取dynamicData
     getDynamicData() {

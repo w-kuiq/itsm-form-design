@@ -10,7 +10,7 @@
     :destroyOnClose="true"
     :width="`${previewWidth}px`"
   >
-    <k-form-build 
+    <k-form-build
       :value="jsonData"
       @submit="handleSubmit"
       :dynamicData="dynamicData"
@@ -28,13 +28,16 @@ import jsonModel from "../KFormDesign/module/jsonModal";
 import axios from "axios";
 
 export default {
+  mounted() {
+    window.$ = this;
+  },
   name: "KFormPreview",
   data() {
     return {
       visible: false,
       previewWidth: 850,
       jsonData: {},
-      dynamicData:{}
+      dynamicData: {}
     };
   },
   components: {
@@ -65,7 +68,7 @@ export default {
       this.visible = false;
     },
     handleDynamic() {
-      console.log(this.dynamicData)
+      console.log(this.dynamicData);
     },
     dynamicDataInit() {
       this.$nextTick(function() {
