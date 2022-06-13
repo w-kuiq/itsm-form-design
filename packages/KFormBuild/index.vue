@@ -141,9 +141,6 @@ export default {
           } else {
             this.form.setFieldsValue(json);
             this.setChange(json);
-            // console.log(json);
-            // console.log(this.form);
-            // console.log(this.form.getFieldDecorator());
           }
         } catch (err) {
           reject(err);
