@@ -208,14 +208,17 @@ export default {
     value(val) {
       this.myValue = val;
       // console.log(val);
-      // if (!this.hasChange && this.uploadVisible) {
-      //   this.$nextTick(() =>
-      //     window.tinymce.get(this.tinymceId).setContent(val || "")
-      //   );
-      // }
-      this.$nextTick(() =>
-        window.tinymce.get(this.tinymceId).setContent(val || "")
-      );
+      if (!this.hasChange && this.uploadVisible) {
+        this.$nextTick(() =>
+          window.tinymce.get(this.tinymceId).setContent(val || "")
+        );
+      }
+      if (window.tinymce.get(this.tinymceId).getContent() !== val) {
+        window.tinymce.get(this.tinymceId).setContent(val || "");
+      }
+      // this.$nextTick(() =>
+      //   window.tinymce.get(this.tinymceId).setContent(val || "")
+      // );
     },
     language() {
       this.destroyTinymce();
@@ -223,6 +226,9 @@ export default {
     },
 
     myValue(newValue) {
+      // this.$nextTick(() =>
+      //   window.tinymce.get(this.tinymceId).setContent(newValue || "")
+      // );
       this.$emit("change", newValue);
       this.$emit("input", newValue);
     }
@@ -253,6 +259,7 @@ export default {
       });
     },
     initTinymce() {
+      var _this = this;
       window.tinymce.init({
         selector: `#${this.tinymceId}`,
         language: this.language,
@@ -317,6 +324,7 @@ export default {
         ],
         init_instance_callback: editor => {
           if (this.value) {
+            console.log(this.value);
             editor.setContent(this.value);
           }
           editor.on("NodeChange Change KeyUp SetContent", () => {

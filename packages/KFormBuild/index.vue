@@ -119,6 +119,7 @@ export default {
       });
     },
     setData(json) {
+      console.log(json);
       return new Promise((resolve, reject) => {
         try {
           if (this.outputString) {
