@@ -137,7 +137,7 @@ export default {
               }
             }
             this.form.setFieldsValue(json);
-            this.form.getFieldsValue();
+            this.setChange(json);
           } else {
             this.form.setFieldsValue(json);
             this.setChange(json);
